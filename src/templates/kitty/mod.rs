@@ -29,17 +29,41 @@ pub fn generate(config_dir: &PathBuf, theme: Theme) -> Result<()> {
         ),
     )
     .context("Failed to write config file")?;
-    Command::new("kitty")
-        .args(&[
-            "@",
-            "set-colors",
-            "--all",
-            config_dir
-                .join("kitty.conf")
-                .to_str()
-                .context("Failed to get kitty.conf path")?,
-        ])
+
+    let result = Command::new("pgrep")
+        .arg("kitty")
         .output()
-        .context("Failed to reload kitty")?;
+        .context("Failed to grep pids of kitty")?;
+
+    if result.status.success() {
+        for pid in String::from_utf8(result.stdout)
+            .context("Failed to parse stdout")?
+            .split("\n")
+        {
+            Command::new("kill")
+                .args(&["-SIGUSR1", pid])
+                .output()
+                .context("Failed to reload kitty process with pid {pid}")?;
+        }
+    } else {
+        println!(
+            "WARN: pgrep failed with {}. {}\nINFO: Using remote control to reload current instance.",
+            result.status, String::from_utf8(result.stderr)
+                .unwrap_or_default()
+                .trim_end()
+        );
+        Command::new("kitty")
+            .args(&[
+                "@",
+                "set-colors",
+                "--all",
+                config_dir
+                    .join("kitty.conf")
+                    .to_str()
+                    .context("Failed to get kitty.conf path")?,
+            ])
+            .output()
+            .context("Failed to reload kitty")?;
+    }
     Ok(())
 }
