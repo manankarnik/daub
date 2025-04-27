@@ -1,0 +1,102 @@
+use lazy_static::lazy_static;
+use serde::Deserialize;
+use std::collections::HashMap;
+
+#[derive(Deserialize, Debug)]
+pub struct Theme {
+    pub name: String,
+    pub variants: HashMap<String, Variant>,
+}
+
+#[derive(Deserialize, Debug)]
+struct PartialVariants {
+    color0: String,
+    color1: String,
+    color2: String,
+    color3: String,
+    color4: String,
+    color5: String,
+    color6: String,
+    color7: String,
+    color8: Option<String>,
+    color9: Option<String>,
+    color10: Option<String>,
+    color11: Option<String>,
+    color12: Option<String>,
+    color13: Option<String>,
+    color14: Option<String>,
+    color15: Option<String>,
+    background: String,
+    foreground: String,
+    cursor_color: Option<String>,
+}
+
+#[derive(Default, Debug, Clone)]
+pub struct Variant {
+    pub color0: String,
+    pub color1: String,
+    pub color2: String,
+    pub color3: String,
+    pub color4: String,
+    pub color5: String,
+    pub color6: String,
+    pub color7: String,
+    pub color8: String,
+    pub color9: String,
+    pub color10: String,
+    pub color11: String,
+    pub color12: String,
+    pub color13: String,
+    pub color14: String,
+    pub color15: String,
+    pub background: String,
+    pub foreground: String,
+    pub cursor_color: String,
+}
+
+impl<'de> Deserialize<'de> for Variant {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        let p = PartialVariants::deserialize(deserializer)?;
+        Ok(Variant {
+            color8: p.color8.unwrap_or_else(|| p.color0.clone()),
+            color9: p.color9.unwrap_or_else(|| p.color1.clone()),
+            color10: p.color10.unwrap_or_else(|| p.color2.clone()),
+            color11: p.color11.unwrap_or_else(|| p.color3.clone()),
+            color12: p.color12.unwrap_or_else(|| p.color4.clone()),
+            color13: p.color13.unwrap_or_else(|| p.color5.clone()),
+            color14: p.color14.unwrap_or_else(|| p.color6.clone()),
+            color15: p.color15.unwrap_or_else(|| p.color7.clone()),
+            color0: p.color0,
+            color1: p.color1,
+            color2: p.color2,
+            color3: p.color3,
+            color4: p.color4,
+            color5: p.color5,
+            color6: p.color6,
+            color7: p.color7,
+            background: p.background,
+            cursor_color: p.cursor_color.unwrap_or_else(|| p.foreground.clone()),
+            foreground: p.foreground,
+        })
+    }
+}
+
+lazy_static! {
+    pub static ref THEMES: HashMap<String, Theme> = {
+        let themes: Vec<Theme> = vec![
+            include_str!("../themes/3024.toml"),
+            include_str!("../themes/default.toml"),
+        ]
+        .into_iter()
+        .map(|content| toml::from_str(content).expect("Predefined theme files should be parsable"))
+        .collect();
+        let mut map = HashMap::new();
+        for theme in themes {
+            map.insert(theme.name.clone(), theme);
+        }
+        map
+    };
+}

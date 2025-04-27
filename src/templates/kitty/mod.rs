@@ -1,31 +1,32 @@
-use crate::config::Theme;
+use crate::themes::Variant;
 
 use anyhow::{Context, Result};
 use std::{fs, path::PathBuf, process::Command};
 
-pub fn generate(config_dir: &PathBuf, theme: Theme) -> Result<()> {
+pub fn generate(config_dir: &PathBuf, variant: &Variant) -> Result<()> {
     fs::write(
         config_dir.join("kitty.conf"),
         format!(
             include_str!("kitty.conf"),
-            color0 = theme.color0,
-            color1 = theme.color1,
-            color2 = theme.color2,
-            color3 = theme.color3,
-            color4 = theme.color4,
-            color5 = theme.color5,
-            color6 = theme.color6,
-            color7 = theme.color7,
-            color8 = theme.color8,
-            color9 = theme.color9,
-            color10 = theme.color10,
-            color11 = theme.color11,
-            color12 = theme.color12,
-            color13 = theme.color13,
-            color14 = theme.color14,
-            color15 = theme.color15,
-            background = theme.background,
-            foreground = theme.foreground
+            color0 = &variant.color0,
+            color1 = &variant.color1,
+            color2 = &variant.color2,
+            color3 = &variant.color3,
+            color4 = &variant.color4,
+            color5 = &variant.color5,
+            color6 = &variant.color6,
+            color7 = &variant.color7,
+            color8 = &variant.color8,
+            color9 = &variant.color9,
+            color10 = &variant.color10,
+            color11 = &variant.color11,
+            color12 = &variant.color12,
+            color13 = &variant.color13,
+            color14 = &variant.color14,
+            color15 = &variant.color15,
+            background = &variant.background,
+            foreground = &variant.foreground,
+            cursor_color = &variant.cursor_color
         ),
     )
     .context("Failed to write config file")?;
