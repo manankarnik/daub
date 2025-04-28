@@ -25,6 +25,9 @@ enum Command {
 
     /// Clean generated files
     Clean,
+
+    /// List themes and variants
+    List,
 }
 
 fn get_config_dir() -> Result<PathBuf> {
@@ -70,10 +73,26 @@ fn main() -> Result<()> {
                 .get(&variant)
                 .ok_or(anyhow!("Undefined variant: {variant}"))?;
             templates::generate_all(&generated_dir, variant)?;
-            templates::reload_all(&generated_dir)
+            templates::reload_all(&generated_dir)?;
         }
         Command::Clean => {
-            fs::remove_dir_all(&generated_dir).context("Failed to remove generated files")
+            fs::remove_dir_all(&generated_dir).context("Failed to remove generated files")?
+        }
+        Command::List => {
+            println!("Available Themes:\n");
+            let mut themes: Vec<_> = themes.iter().collect();
+            themes.sort_by_key(|&(n, _)| n);
+            for (name, theme) in themes {
+                let mut variants = theme
+                    .variants
+                    .keys()
+                    .map(|s| s.as_str())
+                    .collect::<Vec<_>>();
+                variants.sort();
+                println!("  • {name}");
+                println!("     Variants: [{}]\n", variants.join(", "));
+            }
         }
     }
+    Ok(())
 }

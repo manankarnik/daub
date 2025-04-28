@@ -103,7 +103,8 @@ impl<'de> Deserialize<'de> for Variant {
 pub fn get_preloaded_themes() -> Result<HashMap<String, Theme>> {
     let parsed: Themes = toml::from_str(
         &[
-            // include_str!("../themes/3024.toml"),
+            include_str!("../themes/3024.toml"),
+            include_str!("../themes/ashes.toml"),
             include_str!("../themes/default.toml"),
         ]
         .join("\n"),
