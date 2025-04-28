@@ -44,10 +44,10 @@ Source `colors.sh` and use variables in your `bspwmrc`.
 
 ```sh
 . "$HOME/.config/daub/colors.sh"
-bspc config normal_border_color "$color8"
+bspc config normal_border_color "$background1"
 bspc config active_border_color "$color4"
 bspc config focused_border_color "$color4"
-bspc config presel_feedback_color "$color0"
+bspc config presel_feedback_color "$background1"
 ```
 
 ### Kitty
