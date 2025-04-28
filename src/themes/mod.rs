@@ -28,7 +28,7 @@ struct PartialVariants {
     color15: Option<String>,
     background: String,
     foreground: String,
-    cursor_color: Option<String>,
+    cursor: Option<String>,
 }
 
 #[derive(Default, Debug, Clone)]
@@ -51,7 +51,7 @@ pub struct Variant {
     pub color15: String,
     pub background: String,
     pub foreground: String,
-    pub cursor_color: String,
+    pub cursor: String,
 }
 
 impl<'de> Deserialize<'de> for Variant {
@@ -78,7 +78,7 @@ impl<'de> Deserialize<'de> for Variant {
             color6: p.color6,
             color7: p.color7,
             background: p.background,
-            cursor_color: p.cursor_color.unwrap_or_else(|| p.foreground.clone()),
+            cursor: p.cursor.unwrap_or_else(|| p.foreground.clone()),
             foreground: p.foreground,
         })
     }

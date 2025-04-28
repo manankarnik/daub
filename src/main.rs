@@ -48,7 +48,6 @@ fn main() -> Result<()> {
             .ok_or(anyhow!("Undefined variant: {variant}")),
     }?;
 
-    templates::kitty::generate(&config_dir, variant)?;
-
-    Ok(())
+    templates::generate_all(&config_dir, variant)?;
+    templates::reload_all(&config_dir)
 }

@@ -26,11 +26,14 @@ pub fn generate(config_dir: &PathBuf, variant: &Variant) -> Result<()> {
             color15 = &variant.color15,
             background = &variant.background,
             foreground = &variant.foreground,
-            cursor_color = &variant.cursor_color
+            cursor = &variant.cursor
         ),
     )
-    .context("Failed to write config file")?;
+    .context("Failed to write kitty config file")?;
+    Ok(())
+}
 
+pub fn reload(config_dir: &PathBuf) -> Result<()> {
     let result = Command::new("pgrep")
         .arg("kitty")
         .output()
