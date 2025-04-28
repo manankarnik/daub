@@ -1,6 +1,7 @@
 name = "3024"
 
 [variants.light]
+mode = "light"
 color0 = "#090300"
 color1 = "#db2d20"
 color2 = "#01a252"
@@ -22,6 +23,7 @@ background = "#f7f7f7"
 cursor = "#4a4543"
 
 [variants.dark]
+mode = "dark"
 color0 = "#090300"
 color1 = "#db2d20"
 color2 = "#01a252"

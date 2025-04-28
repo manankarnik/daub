@@ -1,9 +1,13 @@
-use crate::themes::Variant;
+use crate::themes::{Mode, Variant};
 
 use anyhow::{Context, Result};
 use std::{fs, path::PathBuf};
 
 pub fn generate(config_dir: &PathBuf, variant: &Variant) -> Result<()> {
+    let (foreground1, background1) = match variant.mode {
+        Mode::Dark => (&variant.color7, &variant.color8),
+        Mode::Light => (&variant.color8, &variant.color7),
+    };
     fs::write(
         config_dir.join("colors.sh"),
         format!(
@@ -26,9 +30,10 @@ pub fn generate(config_dir: &PathBuf, variant: &Variant) -> Result<()> {
             color15 = &variant.color15,
             background = &variant.background,
             foreground = &variant.foreground,
+            background1 = background1,
+            foreground1 = foreground1,
             cursor = &variant.cursor
         ),
     )
-    .context("Failed to write shell config file")?;
-    Ok(())
+    .context("Failed to write shell config file")
 }

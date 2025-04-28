@@ -1,9 +1,40 @@
-use crate::themes::Variant;
+use crate::themes::{Mode, Variant};
 
 use anyhow::{Context, Result};
 use std::{fs, path::PathBuf, process::Command};
 
 pub fn generate(config_dir: &PathBuf, variant: &Variant) -> Result<()> {
+    let (
+        selection_background,
+        selection_foreground,
+        active_tab_background,
+        active_tab_foreground,
+        inactive_tab_background,
+        inactive_tab_foreground,
+        active_border_color,
+        inactive_border_color,
+    ) = match variant.mode {
+        Mode::Dark => (
+            &variant.color8,
+            &variant.color15,
+            &variant.color4,
+            &variant.color0,
+            &variant.color8,
+            &variant.color7,
+            &variant.color4,
+            &variant.color8,
+        ),
+        Mode::Light => (
+            &variant.color7,
+            &variant.color0,
+            &variant.color4,
+            &variant.color15,
+            &variant.color7,
+            &variant.color8,
+            &variant.color4,
+            &variant.color7,
+        ),
+    };
     fs::write(
         config_dir.join("colors.conf"),
         format!(
@@ -26,11 +57,18 @@ pub fn generate(config_dir: &PathBuf, variant: &Variant) -> Result<()> {
             color15 = &variant.color15,
             background = &variant.background,
             foreground = &variant.foreground,
-            cursor = &variant.cursor
+            selection_background = selection_background,
+            selection_foreground = selection_foreground,
+            active_tab_background = active_tab_background,
+            active_tab_foreground = active_tab_foreground,
+            inactive_tab_background = inactive_tab_background,
+            inactive_tab_foreground = inactive_tab_foreground,
+            active_border_color = active_border_color,
+            inactive_border_color = inactive_border_color,
+            cursor = &variant.cursor,
         ),
     )
-    .context("Failed to write kitty config file")?;
-    Ok(())
+    .context("Failed to write kitty config file")
 }
 
 pub fn reload(config_dir: &PathBuf) -> Result<()> {

@@ -2,6 +2,14 @@ use lazy_static::lazy_static;
 use serde::Deserialize;
 use std::collections::HashMap;
 
+#[derive(Deserialize, Debug, Clone)]
+pub enum Mode {
+    #[serde(alias = "dark")]
+    Dark,
+    #[serde(alias = "light")]
+    Light,
+}
+
 #[derive(Deserialize, Debug)]
 pub struct Theme {
     pub name: String,
@@ -10,6 +18,7 @@ pub struct Theme {
 
 #[derive(Deserialize, Debug)]
 struct PartialVariants {
+    mode: Mode,
     color0: String,
     color1: String,
     color2: String,
@@ -31,8 +40,9 @@ struct PartialVariants {
     cursor: Option<String>,
 }
 
-#[derive(Default, Debug, Clone)]
+#[derive(Debug, Clone)]
 pub struct Variant {
+    pub mode: Mode,
     pub color0: String,
     pub color1: String,
     pub color2: String,
@@ -61,6 +71,7 @@ impl<'de> Deserialize<'de> for Variant {
     {
         let p = PartialVariants::deserialize(deserializer)?;
         Ok(Variant {
+            mode: p.mode,
             color8: p.color8.unwrap_or_else(|| p.color0.clone()),
             color9: p.color9.unwrap_or_else(|| p.color1.clone()),
             color10: p.color10.unwrap_or_else(|| p.color2.clone()),
