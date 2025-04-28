@@ -9,13 +9,13 @@ pub mod kitty;
 pub mod rofi;
 pub mod shell;
 
-pub fn generate_all(config_dir: &PathBuf, variant: &Variant) -> Result<()> {
-    kitty::generate(config_dir, variant)?;
-    rofi::generate(config_dir, variant)?;
-    shell::generate(config_dir, variant)
+pub fn generate_all(generated_dir: &PathBuf, variant: &Variant) -> Result<()> {
+    kitty::generate(generated_dir, variant)?;
+    rofi::generate(generated_dir, variant)?;
+    shell::generate(generated_dir, variant)
 }
 
-pub fn reload_all(config_dir: &PathBuf) -> Result<()> {
+pub fn reload_all(generated_dir: &PathBuf) -> Result<()> {
     bspwm::reload()?;
-    kitty::reload(config_dir)
+    kitty::reload(generated_dir)
 }

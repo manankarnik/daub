@@ -43,7 +43,7 @@ cargo run -- set <theme> <variant>
 Source `colors.sh` and use variables in your `bspwmrc`.
 
 ```sh
-. "$HOME/.config/daub/colors.sh"
+. "$HOME/.config/daub/gen/ccolors.sh"
 bspc config normal_border_color "$background1"
 bspc config active_border_color "$color4"
 bspc config focused_border_color "$color4"
@@ -55,7 +55,7 @@ bspc config presel_feedback_color "$background1"
 Include `colors.conf` in your `kitty.conf`.
 
 ```sh
-include ~/.config/daub/colors.conf
+include ~/.config/daub/gen/colors.conf
 ```
 
 ### Rofi
@@ -63,5 +63,5 @@ include ~/.config/daub/colors.conf
 Include `colors.rasi` in your Rofi config.
 
 ```css
-@theme "~/.config/daub/colors.rasi";
+@theme "~/.config/daub/gen/ccolors.rasi";
 ```

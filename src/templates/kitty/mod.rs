@@ -3,7 +3,7 @@ use crate::themes::{Mode, Variant};
 use anyhow::{Context, Result};
 use std::{fs, path::PathBuf, process::Command};
 
-pub fn generate(config_dir: &PathBuf, variant: &Variant) -> Result<()> {
+pub fn generate(generated_dir: &PathBuf, variant: &Variant) -> Result<()> {
     let (
         selection_background,
         selection_foreground,
@@ -36,7 +36,7 @@ pub fn generate(config_dir: &PathBuf, variant: &Variant) -> Result<()> {
         ),
     };
     fs::write(
-        config_dir.join("colors.conf"),
+        generated_dir.join("colors.conf"),
         format!(
             include_str!("colors.conf"),
             color0 = &variant.color0,
@@ -71,7 +71,7 @@ pub fn generate(config_dir: &PathBuf, variant: &Variant) -> Result<()> {
     .context("Failed to write kitty config file")
 }
 
-pub fn reload(config_dir: &PathBuf) -> Result<()> {
+pub fn reload(generated_dir: &PathBuf) -> Result<()> {
     let result = Command::new("pgrep")
         .arg("kitty")
         .output()
@@ -99,7 +99,7 @@ pub fn reload(config_dir: &PathBuf) -> Result<()> {
                 "@",
                 "set-colors",
                 "--all",
-                config_dir
+                generated_dir
                     .join("kitty.conf")
                     .to_str()
                     .context("Failed to get kitty.conf path")?,

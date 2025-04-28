@@ -3,13 +3,13 @@ use crate::themes::{Mode, Variant};
 use anyhow::{Context, Result};
 use std::{fs, path::PathBuf};
 
-pub fn generate(config_dir: &PathBuf, variant: &Variant) -> Result<()> {
+pub fn generate(generated_dir: &PathBuf, variant: &Variant) -> Result<()> {
     let (foreground1, background1) = match variant.mode {
         Mode::Dark => (&variant.color7, &variant.color8),
         Mode::Light => (&variant.color8, &variant.color7),
     };
     fs::write(
-        config_dir.join("colors.sh"),
+        generated_dir.join("colors.sh"),
         format!(
             include_str!("colors.sh"),
             color0 = &variant.color0,

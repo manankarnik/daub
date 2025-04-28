@@ -3,7 +3,7 @@ mod themes;
 
 use anyhow::{anyhow, Context, Result};
 use clap::{Parser, Subcommand};
-use std::{env, fs::create_dir_all, path::PathBuf};
+use std::{env, fs, path::PathBuf};
 use themes::THEMES;
 
 #[derive(Parser, Debug)]
@@ -22,6 +22,9 @@ enum Command {
         /// Variant of the theme
         variant: String,
     },
+
+    /// Clean generated files
+    Clean,
 }
 
 fn get_config_dir() -> Result<PathBuf> {
@@ -35,19 +38,25 @@ fn get_config_dir() -> Result<PathBuf> {
 fn main() -> Result<()> {
     let args = Args::parse();
     let config_dir = get_config_dir()?;
-    let daub_config = config_dir.join("daub.toml");
-    if let Some(parent) = daub_config.parent() {
-        create_dir_all(parent)?;
+    // let daub_config = config_dir.join("daub.toml");
+    let generated_dir = config_dir.join("gen");
+    if !generated_dir.exists() {
+        fs::create_dir_all(&generated_dir)?
     }
-    let variant = match args.command {
-        Command::Set { name, variant } => THEMES
-            .get(&name)
-            .ok_or(anyhow!("Undefined theme: {name}"))?
-            .variants
-            .get(&variant)
-            .ok_or(anyhow!("Undefined variant: {variant}")),
-    }?;
 
-    templates::generate_all(&config_dir, variant)?;
-    templates::reload_all(&config_dir)
+    match args.command {
+        Command::Set { name, variant } => {
+            let variant = THEMES
+                .get(&name)
+                .ok_or(anyhow!("Undefined theme: {name}"))?
+                .variants
+                .get(&variant)
+                .ok_or(anyhow!("Undefined variant: {variant}"))?;
+            templates::generate_all(&generated_dir, variant)?;
+            templates::reload_all(&generated_dir)
+        }
+        Command::Clean => {
+            fs::remove_dir_all(&generated_dir).context("Failed to remove generated files")
+        }
+    }
 }
