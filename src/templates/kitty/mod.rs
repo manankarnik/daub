@@ -5,9 +5,9 @@ use std::{fs, path::PathBuf, process::Command};
 
 pub fn generate(config_dir: &PathBuf, variant: &Variant) -> Result<()> {
     fs::write(
-        config_dir.join("kitty.conf"),
+        config_dir.join("colors.conf"),
         format!(
-            include_str!("kitty.conf"),
+            include_str!("colors.conf"),
             color0 = &variant.color0,
             color1 = &variant.color1,
             color2 = &variant.color2,

@@ -52,10 +52,10 @@ bspc config presel_feedback_color "$color0"
 
 ### Kitty
 
-Include generated config in your `kitty.conf`.
+Include `colors.conf` in your `kitty.conf`.
 
 ```sh
-include ~/.config/daub/kitty.conf
+include ~/.config/daub/colors.conf
 ```
 
 ### Rofi
