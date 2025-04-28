@@ -1,6 +1,17 @@
-use lazy_static::lazy_static;
+use anyhow::{Context, Result};
 use serde::Deserialize;
 use std::collections::HashMap;
+
+#[derive(Deserialize, Debug)]
+pub struct Themes {
+    pub themes: Vec<Theme>,
+}
+
+#[derive(Deserialize, Debug)]
+pub struct Theme {
+    pub name: String,
+    pub variants: HashMap<String, Variant>,
+}
 
 #[derive(Deserialize, Debug, Clone)]
 pub enum Mode {
@@ -8,12 +19,6 @@ pub enum Mode {
     Dark,
     #[serde(alias = "light")]
     Light,
-}
-
-#[derive(Deserialize, Debug)]
-pub struct Theme {
-    pub name: String,
-    pub variants: HashMap<String, Variant>,
 }
 
 #[derive(Deserialize, Debug)]
@@ -95,19 +100,18 @@ impl<'de> Deserialize<'de> for Variant {
     }
 }
 
-lazy_static! {
-    pub static ref THEMES: HashMap<String, Theme> = {
-        let themes: Vec<Theme> = vec![
-            include_str!("../themes/3024.toml"),
+pub fn get_preloaded_themes() -> Result<HashMap<String, Theme>> {
+    let parsed: Themes = toml::from_str(
+        &[
+            // include_str!("../themes/3024.toml"),
             include_str!("../themes/default.toml"),
         ]
-        .into_iter()
-        .map(|content| toml::from_str(content).expect("Predefined theme files should be parsable"))
-        .collect();
-        let mut map = HashMap::new();
-        for theme in themes {
-            map.insert(theme.name.clone(), theme);
-        }
-        map
-    };
+        .join("\n"),
+    )
+    .context("Predefined themes should be parsable")?;
+    let mut themes = HashMap::new();
+    for theme in parsed.themes {
+        themes.insert(theme.name.clone(), theme);
+    }
+    Ok(themes)
 }

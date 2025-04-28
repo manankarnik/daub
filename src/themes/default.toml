@@ -1,6 +1,7 @@
+[[themes]]
 name = "default"
 
-[variants.light]
+[themes.variants.light]
 mode = "light"
 color0 = "#151515"
 color1 = "#ac4142"
@@ -22,7 +23,7 @@ foreground = "#303030"
 background = "#f5f5f5"
 cursor = "#303030"
 
-[variants.dark]
+[themes.variants.dark]
 mode = "dark"
 color0 = "#151515"
 color1 = "#ac4142"
