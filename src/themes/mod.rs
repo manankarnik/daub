@@ -3,7 +3,7 @@ use serde::Deserialize;
 use std::collections::HashMap;
 
 #[derive(Deserialize, Debug)]
-pub struct Themes {
+pub struct Config {
     pub themes: Vec<Theme>,
 }
 
@@ -101,7 +101,7 @@ impl<'de> Deserialize<'de> for Variant {
 }
 
 pub fn get_preloaded_themes() -> Result<HashMap<String, Theme>> {
-    let parsed: Themes = toml::from_str(
+    let config: Config = toml::from_str(
         &[
             include_str!("../themes/3024.toml"),
             include_str!("../themes/ashes.toml"),
@@ -111,7 +111,7 @@ pub fn get_preloaded_themes() -> Result<HashMap<String, Theme>> {
     )
     .context("Predefined themes should be parsable")?;
     let mut themes = HashMap::new();
-    for theme in parsed.themes {
+    for theme in config.themes {
         themes.insert(theme.name.clone(), theme);
     }
     Ok(themes)

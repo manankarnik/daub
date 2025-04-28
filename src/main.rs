@@ -4,7 +4,7 @@ mod themes;
 use anyhow::{anyhow, Context, Result};
 use clap::{Parser, Subcommand};
 use std::{collections::HashMap, env, fs, path::PathBuf};
-use themes::{get_preloaded_themes, Theme, Themes};
+use themes::{get_preloaded_themes, Config, Theme};
 
 #[derive(Parser, Debug)]
 #[command(author, version)]
@@ -40,12 +40,12 @@ fn get_config_dir() -> Result<PathBuf> {
 
 fn parse_config(daub_config: &PathBuf) -> Result<HashMap<String, Theme>> {
     let mut themes = get_preloaded_themes()?;
-    let parsed: Themes = toml::from_str(
+    let config: Config = toml::from_str(
         &String::from_utf8(fs::read(daub_config).context("Failed to read config from disk")?)
             .context("Config is not valid UTF-8")?,
     )
     .context("Failed to parse config from TOML")?;
-    for theme in parsed.themes {
+    for theme in config.themes {
         if themes.get(&theme.name).is_some() {
             Err(anyhow!(format!("Theme {} already exists", theme.name)))?
         }
@@ -76,7 +76,7 @@ fn main() -> Result<()> {
             templates::reload_all(&generated_dir)?;
         }
         Command::Clean => {
-            fs::remove_dir_all(&generated_dir).context("Failed to remove generated files")?
+            fs::remove_dir_all(&generated_dir).context("Failed to remove generated files")?;
         }
         Command::List => {
             println!("Available Themes:\n");
