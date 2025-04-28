@@ -57,3 +57,11 @@ Include generated config in your `kitty.conf`.
 ```sh
 include ~/.config/daub/kitty.conf
 ```
+
+### Rofi
+
+Include `colors.rasi` in your Rofi config.
+
+```css
+@theme "~/.config/daub/colors.rasi";
+```

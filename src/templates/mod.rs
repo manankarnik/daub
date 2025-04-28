@@ -6,10 +6,12 @@ use crate::themes::Variant;
 
 pub mod bspwm;
 pub mod kitty;
+pub mod rofi;
 pub mod shell;
 
 pub fn generate_all(config_dir: &PathBuf, variant: &Variant) -> Result<()> {
     kitty::generate(config_dir, variant)?;
+    rofi::generate(config_dir, variant)?;
     shell::generate(config_dir, variant)
 }
 
