@@ -36,6 +36,24 @@ Set a theme
 cargo run -- set <theme> <variant>
 ```
 
-## Support
+## How to
 
-Currently supports the [kitty](https://sw.kovidgoyal.net/kitty/) terminal and two predefined themes, `3024` and `default` with dark and light variants.
+### BSPWM
+
+Source `colors.sh` and use variables in your `bspwmrc`.
+
+```sh
+. "$HOME/.config/daub/colors.sh"
+bspc config normal_border_color "$color8"
+bspc config active_border_color "$color4"
+bspc config focused_border_color "$color4"
+bspc config presel_feedback_color "$color0"
+```
+
+### Kitty
+
+Include generated config in your `kitty.conf`.
+
+```sh
+include ~/.config/daub/kitty.conf
+```
