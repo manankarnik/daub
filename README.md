@@ -64,68 +64,72 @@ Multiple themes can be defined in the same config file. Each theme is listed und
 
 ### Variants
 
-Each variant is defined under `themes.variants.{variantName}`, where `{variantName}` can be any name (e.g., `light`, `dark`, `day`, `night` etc.).
+Each variant is defined under `themes.variants.{variant}`, where `{variant}` can be any name (e.g., `light`, `dark`, `day`, `night` etc.).
 
 ### Variant Keys
 
-| Key                   | Required | Description                                                                                                           |
-| --------------------- | -------- | --------------------------------------------------------------------------------------------------------------------- |
-| `mode`                | Yes      | Must be either `"light"` or `"dark"`. This determines the how the alternate foreground and background colors are set. |
-| `color0` to `color7`  | Yes      | Core color palette used for primary theme elements.                                                                   |
-| `foreground`          | Yes      | Text (foreground) color.                                                                                              |
-| `background`          | Yes      | Background color.                                                                                                     |
-| `color8` to `color15` | No       | Extended color palette. If any of the keys are not defined, `color0` through `color7` are used as fallback.           |
-| `cursor`              | No       | Cursor color. If not defined, `foreground` is used instead.                                                           |
+The following table is adapted from [Base16 Styling guidelines](https://github.com/tinted-theming/home/blob/main/styling.md).
+
+| Color                                                | base0X | ANSI     | Terminal                 | Text Editor                                                         |
+| ---------------------------------------------------- | ------ | -------- | ------------------------ | ------------------------------------------------------------------- |
+| ![#](https://placehold.co/25/282c34/000000?text=%2B) | base00 | 0        | Black (Background)       | Default Background                                                  |
+| ![#](https://placehold.co/25/3f4451/000000?text=%2B) | base01 | 18       | (Darkest Gray)           | Lighter Background (Used for status bars)                           |
+| ![#](https://placehold.co/25/4f5666/000000?text=%2B) | base02 | 19       | (Dark Gray)              | Selection Background                                                |
+| ![#](https://placehold.co/25/545862/000000?text=%2B) | base03 | 8        | Bright Black (Gray)      | Comments, Invisibles, Line Highlighting                             |
+| ![#](https://placehold.co/25/9196a1/000000?text=%2B) | base04 | 20       | (Light Gray)             | Dark Foreground (Used for status bars)                              |
+| ![#](https://placehold.co/25/abb2bf/000000?text=%2B) | base05 | 21       | Foreground               | Default Foreground, Caret, Delimiters, Operators                    |
+| ![#](https://placehold.co/25/e6e6e6/000000?text=%2B) | base06 | 7        | White                    | Light Foreground                                                    |
+| ![#](https://placehold.co/25/ffffff/000000?text=%2B) | base07 | 15       | Bright White             | The Lightest Foreground                                             |
+| ![#](https://placehold.co/25/e06c75/000000?text=%2B) | base08 | 1 and 9  | Red and Bright Red       | Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted   |
+| ![#](https://placehold.co/25/d19a66/000000?text=%2B) | base09 | 16       | (Orange)                 | Integers, Boolean, Constants, XML Attributes, Markup Link Url       |
+| ![#](https://placehold.co/25/e5c07b/000000?text=%2B) | base0A | 3 and 11 | Yellow and Bright Yellow | Classes, Markup Bold, Search Text Background                        |
+| ![#](https://placehold.co/25/98c379/000000?text=%2B) | base0B | 2 and 10 | Green and Bright Green   | Strings, Inherited Class, Markup Code, Diff Inserted                |
+| ![#](https://placehold.co/25/56b6c2/000000?text=%2B) | base0C | 6 and 14 | Cyan and Bright Cyan     | Support, Regular Expressions, Escape Characters, Markup Quotes      |
+| ![#](https://placehold.co/25/61afef/000000?text=%2B) | base0D | 4 and 12 | Blue and Bright Blue     | Functions, Methods, Attribute IDs, Headings                         |
+| ![#](https://placehold.co/25/c678dd/000000?text=%2B) | base0E | 5 and 13 | Purple and Bright Purple | Keywords, Storage, Selector, Markup Italic, Diff Changed            |
+| ![#](https://placehold.co/25/be5046/000000?text=%2B) | base0F | 17       | (Dark Red or Brown)      | Deprecated, Opening/Closing Embedded Language Tags, e.g. `<?php ?>` |
 
 ### Example Configuration
 
 ```toml
 [[themes]]
-name = "default"
+name = "example"
 
 [themes.variants.light]
-mode = "light"
-color0 = "#151515"
-color1 = "#ac4142"
-color2 = "#90a959"
-color3 = "#f4bf75"
-color4 = "#6a9fb5"
-color5 = "#aa759f"
-color6 = "#75b5aa"
-color7 = "#d0d0d0"
-color8 = "#505050"
-color9 = "#ac4142"
-color10 = "#90a959"
-color11 = "#f4bf75"
-color12 = "#6a9fb5"
-color13 = "#aa759f"
-color14 = "#75b5aa"
-color15 = "#f5f5f5"
-foreground = "#303030"
-background = "#f5f5f5"
-cursor = "#303030"
+base00 = "#ffffff"
+base01 = "#e6e6e6"
+base02 = "#abb2bf"
+base03 = "#9196a1"
+base04 = "#545862"
+base05 = "#4f5666"
+base06 = "#3f4451"
+base07 = "#282c34"
+base08 = "#e06c75"
+base09 = "#d19a66"
+base0A = "#e5c07b"
+base0B = "#98c379"
+base0C = "#56b6c2"
+base0D = "#61afef"
+base0E = "#c678dd"
+base0F = "#be5046"
 
 [themes.variants.dark]
-mode = "dark"
-color0 = "#151515"
-color1 = "#ac4142"
-color2 = "#90a959"
-color3 = "#f4bf75"
-color4 = "#6a9fb5"
-color5 = "#aa759f"
-color6 = "#75b5aa"
-color7 = "#d0d0d0"
-color8 = "#505050"
-color9 = "#ac4142"
-color10 = "#90a959"
-color11 = "#f4bf75"
-color12 = "#6a9fb5"
-color13 = "#aa759f"
-color14 = "#75b5aa"
-color15 = "#f5f5f5"
-foreground = "#d0d0d0"
-background = "#151515"
-cursor = "#d0d0d0"
+base00 = "#282c34"
+base01 = "#3f4451"
+base02 = "#4f5666"
+base03 = "#545862"
+base04 = "#9196a1"
+base05 = "#abb2bf"
+base06 = "#e6e6e6"
+base07 = "#ffffff"
+base08 = "#e06c75"
+base09 = "#d19a66"
+base0A = "#e5c07b"
+base0B = "#98c379"
+base0C = "#56b6c2"
+base0D = "#61afef"
+base0E = "#c678dd"
+base0F = "#be5046"
 ```
 
 ## How to Configure...

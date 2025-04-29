@@ -40,6 +40,9 @@ fn get_config_dir() -> Result<PathBuf> {
 
 fn parse_config(daub_config: &PathBuf) -> Result<HashMap<String, Theme>> {
     let mut themes = get_preloaded_themes()?;
+    if !daub_config.exists() {
+        return Ok(themes);
+    }
     let config: Config = toml::from_str(
         &String::from_utf8(fs::read(daub_config).context("Failed to read config from disk")?)
             .context("Config is not valid UTF-8")?,

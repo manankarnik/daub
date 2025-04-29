@@ -10,108 +10,65 @@ pub struct Config {
 #[derive(Deserialize, Debug)]
 pub struct Theme {
     pub name: String,
+    pub author: String,
     pub variants: HashMap<String, Variant>,
 }
 
-#[derive(Deserialize, Debug, Clone)]
+#[derive(Debug, Default)]
 pub enum Mode {
-    #[serde(alias = "dark")]
+    #[default]
     Dark,
-    #[serde(alias = "light")]
     Light,
 }
 
 #[derive(Deserialize, Debug)]
-struct PartialVariants {
-    mode: Mode,
-    color0: String,
-    color1: String,
-    color2: String,
-    color3: String,
-    color4: String,
-    color5: String,
-    color6: String,
-    color7: String,
-    color8: Option<String>,
-    color9: Option<String>,
-    color10: Option<String>,
-    color11: Option<String>,
-    color12: Option<String>,
-    color13: Option<String>,
-    color14: Option<String>,
-    color15: Option<String>,
-    background: String,
-    foreground: String,
-    cursor: Option<String>,
-}
-
-#[derive(Debug, Clone)]
+#[allow(non_snake_case)]
 pub struct Variant {
+    #[serde(skip)]
     pub mode: Mode,
+    #[serde(skip)]
     pub color0: String,
-    pub color1: String,
-    pub color2: String,
-    pub color3: String,
-    pub color4: String,
-    pub color5: String,
-    pub color6: String,
-    pub color7: String,
-    pub color8: String,
-    pub color9: String,
-    pub color10: String,
-    pub color11: String,
-    pub color12: String,
-    pub color13: String,
-    pub color14: String,
+    #[serde(skip)]
     pub color15: String,
-    pub background: String,
-    pub foreground: String,
-    pub cursor: String,
-}
-
-impl<'de> Deserialize<'de> for Variant {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-    where
-        D: serde::Deserializer<'de>,
-    {
-        let p = PartialVariants::deserialize(deserializer)?;
-        Ok(Variant {
-            mode: p.mode,
-            color8: p.color8.unwrap_or_else(|| p.color0.clone()),
-            color9: p.color9.unwrap_or_else(|| p.color1.clone()),
-            color10: p.color10.unwrap_or_else(|| p.color2.clone()),
-            color11: p.color11.unwrap_or_else(|| p.color3.clone()),
-            color12: p.color12.unwrap_or_else(|| p.color4.clone()),
-            color13: p.color13.unwrap_or_else(|| p.color5.clone()),
-            color14: p.color14.unwrap_or_else(|| p.color6.clone()),
-            color15: p.color15.unwrap_or_else(|| p.color7.clone()),
-            color0: p.color0,
-            color1: p.color1,
-            color2: p.color2,
-            color3: p.color3,
-            color4: p.color4,
-            color5: p.color5,
-            color6: p.color6,
-            color7: p.color7,
-            background: p.background,
-            cursor: p.cursor.unwrap_or_else(|| p.foreground.clone()),
-            foreground: p.foreground,
-        })
-    }
+    pub base00: String,
+    pub base01: String,
+    pub base02: String,
+    pub base03: String,
+    pub base04: String,
+    pub base05: String,
+    pub base06: String,
+    pub base07: String,
+    pub base08: String,
+    pub base09: String,
+    pub base0A: String,
+    pub base0B: String,
+    pub base0C: String,
+    pub base0D: String,
+    pub base0E: String,
+    pub base0F: String,
 }
 
 pub fn get_preloaded_themes() -> Result<HashMap<String, Theme>> {
-    let config: Config = toml::from_str(
-        &[
-            include_str!("../themes/3024.toml"),
-            include_str!("../themes/ashes.toml"),
-            include_str!("../themes/default.toml"),
-        ]
-        .join("\n"),
-    )
-    .context("Predefined themes should be parsable")?;
+    let config: Config =
+        toml::from_str(&[include_str!("3024.toml"), include_str!("default.toml")].join("\n"))
+            .context("Predefined themes should be parsable")?;
     let mut themes = HashMap::new();
-    for theme in config.themes {
+    for mut theme in config.themes {
+        for (_, variant) in theme.variants.iter_mut() {
+            if u32::from_str_radix(variant.base00.trim_start_matches("#"), 16)
+                .context("Failed to parse hex")?
+                > u32::from_str_radix(variant.base07.trim_start_matches("#"), 16)
+                    .context("Failed to parse hex")?
+            {
+                variant.mode = Mode::Light;
+                variant.color0 = variant.base07.clone();
+                variant.color15 = variant.base00.clone();
+            } else {
+                variant.mode = Mode::Dark;
+                variant.color0 = variant.base00.clone();
+                variant.color15 = variant.base07.clone();
+            }
+        }
         themes.insert(theme.name.clone(), theme);
     }
     Ok(themes)
