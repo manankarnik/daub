@@ -135,11 +135,7 @@ cursor = "#d0d0d0"
 Source `colors.sh` and use variables in your `bspwmrc`.
 
 ```sh
-. "$HOME/.config/daub/gen/ccolors.sh"
-bspc config normal_border_color "$background1"
-bspc config active_border_color "$color4"
-bspc config focused_border_color "$color4"
-bspc config presel_feedback_color "$background1"
+. "$HOME/.config/daub/gen/colors.sh"
 ```
 
 ### Kitty
@@ -155,5 +151,5 @@ include ~/.config/daub/gen/colors.conf
 Include `colors.rasi` in your Rofi config.
 
 ```css
-@theme "~/.config/daub/gen/ccolors.rasi";
+@theme "~/.config/daub/gen/colors.rasi";
 ```
