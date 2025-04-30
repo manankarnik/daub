@@ -29,7 +29,7 @@ pub fn generate(generated_dir: &PathBuf, variant: &Variant) -> Result<()> {
             selection_background = &variant.base02,
             selection_foreground = &variant.base06,
             active_tab_background = &variant.base0E,
-            active_tab_foreground = &variant.base04,
+            active_tab_foreground = &variant.base01,
             inactive_tab_background = &variant.base01,
             inactive_tab_foreground = &variant.base05,
             active_border_color = &variant.base0C,

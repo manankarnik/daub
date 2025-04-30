@@ -20,5 +20,5 @@ pub fn generate_all(generated_dir: &PathBuf, variant: &Variant) -> Result<()> {
 pub fn reload_all(generated_dir: &PathBuf) -> Result<()> {
     bspwm::reload()?;
     kitty::reload(generated_dir)?;
-    nvim::reload(generated_dir)
+    nvim::reload()
 }

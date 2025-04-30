@@ -10,7 +10,7 @@ pub struct Config {
 #[derive(Deserialize, Debug)]
 pub struct Theme {
     pub name: String,
-    pub author: String,
+    pub author: Option<String>,
     pub variants: HashMap<String, Variant>,
 }
 
@@ -24,27 +24,46 @@ pub enum Mode {
 #[derive(Deserialize, Debug)]
 #[allow(non_snake_case)]
 pub struct Variant {
+    /// Dark or light mode
     #[serde(skip)]
     pub mode: Mode,
+    /// ANSI color0
     #[serde(skip)]
     pub color0: String,
+    /// ANSI color15
     #[serde(skip)]
     pub color15: String,
+    /// Default background
     pub base00: String,
+    /// Lighter background
     pub base01: String,
+    /// Selection background
     pub base02: String,
+    /// Comments, Invisibles, Line Highlighting
     pub base03: String,
+    /// Dark Foreground
     pub base04: String,
+    /// Default Foreground
     pub base05: String,
+    /// Light Foreground
     pub base06: String,
+    /// Lightest Foreground
     pub base07: String,
+    /// Red and Bright Red
     pub base08: String,
+    /// Orange
     pub base09: String,
+    /// Yellow and Bright Yellow
     pub base0A: String,
+    /// Green and Bright Green
     pub base0B: String,
+    /// Cyan and Bright Cyan
     pub base0C: String,
+    /// Blue and Bright Blue
     pub base0D: String,
+    /// Purple and Bright Purple
     pub base0E: String,
+    /// Dark Red or Brown
     pub base0F: String,
 }
 
