@@ -76,9 +76,9 @@ The following table is adapted from [Base16 Styling guidelines](https://github.c
 | ![#](https://placehold.co/25/3f4451/000000?text=%2B) | base01 | -        | -                        | Lighter Background (Used for status bars)                           |
 | ![#](https://placehold.co/25/4f5666/000000?text=%2B) | base02 | 8 or 7   | -                        | Lightest Background                                                 |
 | ![#](https://placehold.co/25/545862/000000?text=%2B) | base03 | -        | -                        | Comments, Invisibles, Line Highlighting                             |
-| ![#](https://placehold.co/25/9196a1/000000?text=%2B) | base04 | 7 or 8   | -                        | Dark Foreground (Used for status bars)                              |
-| ![#](https://placehold.co/25/abb2bf/000000?text=%2B) | base05 | -        | -                        | Default Foreground, Caret, Delimiters, Operators                    |
-| ![#](https://placehold.co/25/e6e6e6/000000?text=%2B) | base06 | 15 or 0  | White or Black           | Light Foreground                                                    |
+| ![#](https://placehold.co/25/9196a1/000000?text=%2B) | base04 | 7 or 8   | -                        | Darkest Foreground (Used for status bars)                           |
+| ![#](https://placehold.co/25/abb2bf/000000?text=%2B) | base05 | -        | -                        | Darker Foreground, Caret, Delimiters, Operators                     |
+| ![#](https://placehold.co/25/e6e6e6/000000?text=%2B) | base06 | 15 or 0  | White or Black           | Default Foreground                                                  |
 | ![#](https://placehold.co/25/cdd6f4/000000?text=%2B) | base07 | -        | -                        | Modules, Identifiers, Current Line Number, Cursor                   |
 | ![#](https://placehold.co/25/e06c75/000000?text=%2B) | base08 | 1 and 9  | Red and Bright Red       | Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted   |
 | ![#](https://placehold.co/25/d19a66/000000?text=%2B) | base09 | 16       | Orange                   | Integers, Boolean, Constants, XML Attributes, Markup Link Url       |
