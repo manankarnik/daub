@@ -4,7 +4,7 @@ mod themes;
 use anyhow::{anyhow, Context, Result};
 use clap::{Parser, Subcommand};
 use std::{collections::HashMap, env, fs, path::PathBuf};
-use themes::{get_preloaded_themes, Config, Theme};
+use themes::{define_skipped, get_preloaded_themes, Config, Theme};
 
 #[derive(Parser, Debug)]
 #[command(author, version)]
@@ -41,6 +41,7 @@ fn get_config_dir() -> Result<PathBuf> {
 fn parse_config(daub_config: &PathBuf) -> Result<HashMap<String, Theme>> {
     let mut themes = get_preloaded_themes()?;
     if !daub_config.exists() {
+        define_skipped(&mut themes)?;
         return Ok(themes);
     }
     let config: Config = toml::from_str(
@@ -54,6 +55,7 @@ fn parse_config(daub_config: &PathBuf) -> Result<HashMap<String, Theme>> {
         }
         themes.insert(theme.name.clone(), theme);
     }
+    define_skipped(&mut themes)?;
     Ok(themes)
 }
 
@@ -93,6 +95,9 @@ fn main() -> Result<()> {
                     .collect::<Vec<_>>();
                 variants.sort();
                 println!("  • {name}");
+                if let Some(author) = &theme.author {
+                    println!("     Author: {}", author);
+                }
                 println!("     Variants: [{}]\n", variants.join(", "));
             }
         }

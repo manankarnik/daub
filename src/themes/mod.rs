@@ -30,6 +30,12 @@ pub struct Variant {
     /// ANSI color0
     #[serde(skip)]
     pub color0: String,
+    /// ANSI color7
+    #[serde(skip)]
+    pub color7: String,
+    /// ANSI color8
+    #[serde(skip)]
+    pub color8: String,
     /// ANSI color15
     #[serde(skip)]
     pub color15: String,
@@ -68,11 +74,17 @@ pub struct Variant {
 }
 
 pub fn get_preloaded_themes() -> Result<HashMap<String, Theme>> {
-    let config: Config =
-        toml::from_str(&[include_str!("3024.toml"), include_str!("default.toml")].join("\n"))
-            .context("Predefined themes should be parsable")?;
+    let config: Config = toml::from_str(&[include_str!("example.toml")].join("\n"))
+        .context("Predefined themes should be parsable")?;
     let mut themes = HashMap::new();
-    for mut theme in config.themes {
+    for theme in config.themes {
+        themes.insert(theme.name.clone(), theme);
+    }
+    Ok(themes)
+}
+
+pub fn define_skipped(themes: &mut HashMap<String, Theme>) -> Result<()> {
+    for (_, theme) in themes {
         for (_, variant) in theme.variants.iter_mut() {
             if u32::from_str_radix(variant.base00.trim_start_matches("#"), 16)
                 .context("Failed to parse hex")?
@@ -80,15 +92,18 @@ pub fn get_preloaded_themes() -> Result<HashMap<String, Theme>> {
                     .context("Failed to parse hex")?
             {
                 variant.mode = Mode::Light;
-                variant.color0 = variant.base07.clone();
+                variant.color0 = variant.base05.clone();
+                variant.color7 = variant.base02.clone();
+                variant.color8 = variant.base04.clone();
                 variant.color15 = variant.base00.clone();
             } else {
                 variant.mode = Mode::Dark;
                 variant.color0 = variant.base00.clone();
-                variant.color15 = variant.base07.clone();
+                variant.color7 = variant.base04.clone();
+                variant.color8 = variant.base02.clone();
+                variant.color15 = variant.base05.clone();
             }
         }
-        themes.insert(theme.name.clone(), theme);
     }
-    Ok(themes)
+    Ok(())
 }

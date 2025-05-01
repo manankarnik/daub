@@ -14,7 +14,7 @@ hi! CursorLine guibg={base01}
 hi! Visual guibg={base02}
 hi! LineNr guifg={base03}
 hi! CursorLineNr guifg={base07}
-hi! StatusLine guifg={base04} guibg={base02}
+hi! StatusLine guifg={base04} guibg={base01}
 hi! StatusLineNC guifg={base03} guibg={base01}
 hi! Search guifg={base00} guibg={base0A}
 hi! CurSearch guifg={base01} guibg={base09}
@@ -99,12 +99,22 @@ hi! VisualNOS guifg={base08}
 hi! WarningMsg guifg={base08}
 hi! WildMenu guifg={base08} guibg={base0A}
 hi! Conceal guifg={base0D} guibg={base00}
-hi! Cursor guifg={base00} guibg={base05}
+hi! Cursor guifg={base00} guibg={base07}
 hi! NonText guifg={base03}
 hi! SignColumn guifg={base03}
 hi! ColorColumn guibg={base01}
 hi! CursorColumn guibg={base01}
 hi! QuickFixLine guibg={base01}
+"
+" =============================================
+" Diff
+" =============================================
+hi! Added guifg={base0B}
+hi! Removed guifg={base08}
+hi! DiffAdd guifg={base0B}
+hi! DiffChange guifg={base0A}
+hi! DiffDelete guifg={base08}
+hi! DiffText guibg={base0C}
 
 " =============================================
 " Menus and Navigation
@@ -113,7 +123,7 @@ hi! PMenu guifg={base05} guibg={base01}
 hi! PMenuSel  guifg={base05} guibg={base01}
 hi! TabLine guifg={base03} guibg={base01}
 hi! TabLineFill guifg={base03} guibg={base01}
-hi! TabLineSel guifg={base0B} guibg={base01}
+hi! TabLineSel guifg={base04} guibg={base01} gui=NONE
 
 " =============================================
 " LSP and Tree-sitter Highlighting
@@ -135,7 +145,7 @@ hi! TelescopePromptTitle guifg={base0B}
 hi! TelescopeResultsTitle guifg={base0E}
 hi! TelescopePreviewTitle guifg={base0A}
 hi! TelescopePromptPrefix guifg={base08}
-hi! TelescopeSelection guifg={base06} guibg={base03}
+hi! TelescopeSelection guifg={base06} guibg={base02}
 hi! TelescopeMatching guifg={base0A}
 hi! TelescopeResultsIcon guifg={base05}
 hi! TelescopePreviewLine guifg={base03} guibg={base01}

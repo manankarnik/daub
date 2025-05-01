@@ -1,4 +1,4 @@
-use crate::themes::{Mode, Variant};
+use crate::themes::Variant;
 
 use anyhow::{Context, Result};
 use std::{fs, path::PathBuf};
