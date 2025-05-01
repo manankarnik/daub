@@ -150,6 +150,28 @@ Include `colors.conf` in your `kitty.conf`.
 include ~/.config/daub/gen/colors.conf
 ```
 
+### Neovim (or Vim)
+
+Create a colorscheme file `{VIM/NEOVIM CONFIG DIR}/colors/daub.vim` with the following content:
+
+```vim
+source ~/.config/daub/gen/colors.vim
+```
+
+Set colorscheme in your config.
+
+Lua:
+
+```lua
+vim.cmd("colorscheme daub")
+```
+
+Vimscript:
+
+```vim
+colorscheme daub
+```
+
 ### Rofi
 
 Include `colors.rasi` in your Rofi config.

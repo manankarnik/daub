@@ -51,7 +51,7 @@ pub fn reload() -> Result<()> {
         ])
         .stderr(Stdio::null())
         .output()
-        .context("Failed to grep pids of kitty")?;
+        .context("Failed to find nvim servers")?;
 
     for server in String::from_utf8(result.stdout)
         .context("Failed to parse stdout")?
@@ -66,7 +66,7 @@ pub fn reload() -> Result<()> {
                     "--server",
                     server,
                     "--remote-expr",
-                    "execute(\"source $MYVIMRC\")",
+                    "execute(\"colorscheme daub\")",
                 ])
                 .output()
                 .context("Failed to reload nvim")?,
