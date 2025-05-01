@@ -16,8 +16,8 @@ hi! LineNr guifg={base03}
 hi! CursorLineNr guifg={base07}
 hi! StatusLine guifg={base04} guibg={base01}
 hi! StatusLineNC guifg={base03} guibg={base01}
-hi! Search guifg={base00} guibg={base0A}
-hi! CurSearch guifg={base01} guibg={base09}
+hi! Search guifg={base05} guibg={base02}
+hi! CurSearch guifg={base01} guibg={base0A}
 hi! link IncSearch CurSearch
 hi! Title guifg={base0D}
 hi! WinSeparator guifg={base02}
@@ -71,6 +71,12 @@ hi! Delimiter guifg={base04}
 hi! SpecialComment guifg={base03}
 hi! Debug guifg={base08}
 
+" Spell
+hi! SpellBad guisp={base08} gui=undercurl
+hi! SpellCap guisp={base0A} gui=undercurl
+hi! SpellRare guisp={base0C} gui=undercurl
+hi! SpellLocal guisp={base0B} gui=undercurl
+
 " =============================================
 " Text Formatting and Error States
 " =============================================
@@ -88,7 +94,7 @@ hi! Directory guifg={base0D}
 hi! ErrorMsg guifg={base08} guibg={base00}
 hi! FoldColumn guifg={base0C} guibg={base01}
 hi! Folded guifg={base03} guibg={base01}
-hi! MatchParen guibg={base03}
+hi! MatchParen guifg={base0A} guibg={base03}
 hi! ModeMsg guifg={base0B}
 hi! MoreMsg guifg={base0B}
 hi! Question guifg={base0D}
@@ -104,23 +110,25 @@ hi! NonText guifg={base03}
 hi! SignColumn guifg={base03}
 hi! ColorColumn guibg={base01}
 hi! CursorColumn guibg={base01}
-hi! QuickFixLine guibg={base01}
+hi! QuickFixLine guifg={base0A} guibg={base01}
 "
 " =============================================
 " Diff
 " =============================================
 hi! Added guifg={base0B}
+hi! Changed guifg={base0A}
 hi! Removed guifg={base08}
-hi! DiffAdd guifg={base0B}
-hi! DiffChange guifg={base0A}
-hi! DiffDelete guifg={base08}
-hi! DiffText guibg={base0C}
+hi! DiffAdd guifg={base0B} guibg=NONE
+hi! DiffChange guifg={base0A} guibg=NONE
+hi! DiffDelete guifg={base08} guibg=NONE
+hi! DiffText guifg={base0C} guibg=NONE
 
 " =============================================
 " Menus and Navigation
 " =============================================
 hi! PMenu guifg={base05} guibg={base01}
-hi! PMenuSel  guifg={base05} guibg={base01}
+hi! PMenuSel guifg={base05} guibg={base01}
+hi! PMenuThumb guibg={base02}
 hi! TabLine guifg={base03} guibg={base01}
 hi! TabLineFill guifg={base03} guibg={base01}
 hi! TabLineSel guifg={base04} guibg={base01} gui=NONE
@@ -186,6 +194,28 @@ hi! GitSignsAdd guifg={base0B}
 hi! GitSignsChange guifg={base0A}
 hi! GitSignsDelete guifg={base08}
 hi! GitSignsCurrentLineBlame guifg={base03}
+hi! link GitSignsStagedAdd GitSignsAdd
+hi! link GitSignsStagedChange GitSignsChange
+hi! link GitSignsStagedDelete GitSignsDelete
+hi! link GitSignsStagedChangedelete GitSignsChange
+hi! link GitSignsStagedTopdelete GitSignsDelete
+hi! link GitSignsStagedUntracked GitSignsAdd
+hi! link GitSignsStagedAddNr GitSignsAdd
+hi! link GitSignsStagedChangeNr GitSignsChange
+hi! link GitSignsStagedDeleteNr GitSignsDelete
+hi! link GitSignsStagedChangedeleteNr GitSignsChange
+hi! link GitSignsStagedTopdeleteNr GitSignsDelete
+hi! link GitSignsStagedUntrackedNr GitSignsAdd
+hi! link GitSignsStagedAddLn GitSignsAdd
+hi! link GitSignsStagedChangeLn GitSignsChange
+hi! link GitSignsStagedChangedeleteLn GitSignsChange
+hi! link GitSignsStagedUntrackedLn GitSignsAdd
+hi! link GitSignsStagedAddCul GitSignsAdd
+hi! link GitSignsStagedChangeCul GitSignsChange
+hi! link GitSignsStagedDeleteCul GitSignsDelete
+hi! link GitSignsStagedChangedeleteCul GitSignsChange
+hi! link GitSignsStagedTopdeleteCul GitSignsDelete
+hi! link GitSignsStagedUntrackedCul GitSignsAdd
 
 " =============================================
 " Plugin: LSP Diagnostics
@@ -194,6 +224,7 @@ hi! DiagnosticError guifg={base08}
 hi! DiagnosticWarn guifg={base0A}
 hi! DiagnosticInfo guifg={base0D}
 hi! DiagnosticHint guifg={base0C}
+hi! DiagnosticOk guifg={base0B}
 hi! DiagnosticUnderlineError guifg={base08} gui=underline
 hi! DiagnosticUnderlineWarn guifg={base0A} gui=underline
 hi! DiagnosticUnderlineInfo guifg={base0D} gui=underline
@@ -210,13 +241,15 @@ hi! @constructor guifg={base0D}
 hi! @tag.delimiter guifg={base0F}
 hi! @tag.attribute guifg={base0A}
 hi! @text.title guifg={base0D} gui=bold
-hi! @text.uri guifg={base0B} gui=underline
+hi! @text.uri guifg={base0D} gui=underline
 hi! @text.literal guifg={base0B}
 hi! @text.reference guifg={base0C}
-hi! @text.todo guifg={base0A} guibg={base01}
-hi! @text.note guifg={base0C} guibg={base01}
-hi! @text.warning guifg={base09} guibg={base01}
+hi! @text.todo guifg={base0D} guibg={base01}
+hi! @text.note guifg={base0B} guibg={base01}
+hi! @text.warning guifg={base0A} guibg={base01}
 hi! @text.danger guifg={base08} guibg={base01}
+hi! link @variable.builtin Variable
+hi! link @function.builtin Function
 
 " =============================================
 " Plugin: Cmp (Completion)
