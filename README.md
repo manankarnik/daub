@@ -176,6 +176,14 @@ Vimscript:
 colorscheme daub
 ```
 
+### Polybar
+
+Use ANSI colors via xrdb in your `config.ini`:
+
+```ini
+${xrdb:<color>}
+```
+
 ### Rofi
 
 Include `colors.rasi` in your Rofi config.

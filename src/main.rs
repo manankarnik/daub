@@ -40,20 +40,18 @@ fn get_config_dir() -> Result<PathBuf> {
 
 fn parse_config(daub_config: &PathBuf) -> Result<HashMap<String, Theme>> {
     let mut themes = get_preloaded_themes()?;
-    if !daub_config.exists() {
-        define_skipped(&mut themes)?;
-        return Ok(themes);
-    }
-    let config: Config = toml::from_str(
-        &String::from_utf8(fs::read(daub_config).context("Failed to read config from disk")?)
-            .context("Config is not valid UTF-8")?,
-    )
-    .context("Failed to parse config from TOML")?;
-    for theme in config.themes {
-        if themes.get(&theme.name).is_some() {
-            Err(anyhow!(format!("Theme {} already exists", theme.name)))?
+    if daub_config.exists() {
+        let config: Config = toml::from_str(
+            &String::from_utf8(fs::read(daub_config).context("Failed to read config from disk")?)
+                .context("Config is not valid UTF-8")?,
+        )
+        .context("Failed to parse config from TOML")?;
+        for theme in config.themes {
+            if themes.get(&theme.name).is_some() {
+                Err(anyhow!(format!("Theme {} already exists", theme.name)))?
+            }
+            themes.insert(theme.name.clone(), theme);
         }
-        themes.insert(theme.name.clone(), theme);
     }
     define_skipped(&mut themes)?;
     Ok(themes)
