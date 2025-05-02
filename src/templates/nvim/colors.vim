@@ -18,7 +18,7 @@ hi! StatusLine guifg={base04} guibg={base01}
 hi! StatusLineNC guifg={base03} guibg={base01}
 hi! Search guifg={base05} guibg={base02}
 hi! CurSearch guifg={base01} guibg={base0A}
-hi! link IncSearch CurSearch
+hi! IncSearch guifg={base01} guibg={base0C}
 hi! Title guifg={base0D}
 hi! WinSeparator guifg={base02}
 hi! EndOfBuffer guifg={base00}
@@ -54,7 +54,7 @@ hi! Exception guifg={base08}
 hi! PreProc guifg={base0A}
 hi! Include guifg={base0D}
 hi! Define guifg={base0E}
-hi! Macro guifg={base09}
+hi! Macro guifg={base0C}
 hi! PreCondit guifg={base0A}
 
 " Type definitions
@@ -64,7 +64,7 @@ hi! Structure guifg={base0E}
 hi! Typedef guifg={base0A}
 
 " Special elements
-hi! Special guifg={base0C}
+hi! Special guifg={base0F}
 hi! SpecialChar guifg={base0F}
 hi! Tag guifg={base0A}
 hi! Delimiter guifg={base04}
@@ -94,9 +94,9 @@ hi! Directory guifg={base0D}
 hi! ErrorMsg guifg={base08} guibg={base00}
 hi! FoldColumn guifg={base0C} guibg={base01}
 hi! Folded guifg={base03} guibg={base01}
-hi! MatchParen guifg={base0A} guibg={base03}
-hi! ModeMsg guifg={base0B}
-hi! MoreMsg guifg={base0B}
+hi! MatchParen guifg={base09} guibg={base02} gui=bold
+hi! ModeMsg guifg={base05} gui=bold
+hi! MoreMsg guifg={base05} gui=bold
 hi! Question guifg={base0D}
 hi! Substitute guifg={base01} guibg={base0A}
 hi! SpecialKey guifg={base03}
@@ -139,10 +139,12 @@ hi! TabLineSel guifg={base04} guibg={base01} gui=NONE
 hi! @keyword guifg={base0E} gui=italic
 hi! @variable guifg={base05}
 hi! @module guifg={base07} gui=italic
-hi! @function.macro guifg={base0C}
-hi! @lsp.type.parameter guifg={base0C}
-hi! @lsp.type.interface guifg={base09}
-hi! @lsp.type.macro guifg={base0E}
+hi! @lsp.type.parameter guifg={base08}
+hi! link @lsp.type.interface Type
+hi! link @lsp.type.decorator Constant
+hi! link @lsp.type.macro Macro
+hi! link @lsp.type.formatSpecifier Special
+hi! link @function.macro Macro
 
 " =============================================
 " Plugin: Telescope
@@ -299,9 +301,14 @@ hi! BufferLineTabClose guifg={base08} guibg={base01}
 hi! BufferLineIndicatorSelected guifg={base0B} guibg={base02}
 hi! BufferLineSeparator guifg={base02} guibg={base01}
 hi! BufferLineSeparatorSelected guifg={base02} guibg={base02}
+hi! link BufferLineTabSeparator BufferLineSeparator
+hi! link BufferLineTabSeparatorSelected BufferLineSeparatorSelected
 hi! BufferLineModified guifg={base0A} guibg={base01}
 hi! BufferLineModifiedVisible guifg={base0A} guibg={base01}
 hi! BufferLineModifiedSelected guifg={base0A} guibg={base02}
+hi! BufferLineCloseButton guifg={base06} guibg={base01}
+hi! BufferLineCloseButtonVisible guifg={base06} guibg={base01}
+hi! BufferLineCloseButtonSelected guifg={base06} guibg={base02}
 
 " =============================================
 " Plugin: Dashboard
