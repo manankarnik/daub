@@ -172,7 +172,7 @@ hi! IblWhitespace guifg={base00}
 " =============================================
 " Plugin: Nvim Tree
 " =============================================
-hi! NvimTreeNormal guifg={base05} guibg={base01}
+hi! NvimTreeNormal guifg={base05} guibg={base00}
 hi! NvimTreeFolderName guifg={base0D}
 hi! link NvimTreeOpenedFolderName NvimTreeFolderName
 hi! NvimTreeRootFolder guifg={base06}
