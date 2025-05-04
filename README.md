@@ -178,6 +178,12 @@ colorscheme daub
 
 ### Polybar
 
+Symlink generated `.Xresources` to `$HOME`:
+
+```sh
+ln -s ~/.config/daub/gen/.Xresources ~/
+```
+
 Use ANSI colors via xrdb in your `config.ini`:
 
 ```ini
