@@ -252,6 +252,7 @@ hi! @text.warning guifg={base0A} guibg={base01}
 hi! @text.danger guifg={base08} guibg={base01}
 hi! link @variable.builtin Variable
 hi! link @function.builtin Function
+hi! link @type.builtin Type
 
 " =============================================
 " Plugin: Cmp (Completion)
