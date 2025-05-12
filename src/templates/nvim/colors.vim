@@ -27,48 +27,48 @@ hi! EndOfBuffer guifg={base00}
 " Basic Syntax Highlighting
 " =============================================
 " Comments and documentation
-hi! Comment guifg={base03} gui=italic
+hi! Comment guifg={comment} gui=italic
 
 " Constants
-hi! Constant guifg={base09}
-hi! String guifg={base0B}
+hi! Constant guifg={constant}
+hi! String guifg={string}
 hi! Character guifg={base08}
-hi! Number guifg={base09}
-hi! Boolean guifg={base09}
-hi! Float guifg={base09}
+hi! link Number Constant
+hi! link Boolean Constant
+hi! link Float Constant
 
 " Identifiers
-hi! Identifier guifg={base07}
-hi! Function guifg={base0D}
+hi! Identifier guifg={identifier}
+hi! Function guifg={function}
 hi! Operator guifg={base05}
 
 " Control flow and statements
-hi! Statement guifg={base08}
-hi! Conditional guifg={base0E}
+hi! Keyword guifg={keyword} gui=italic
+hi! link Statement Keyword
+hi! link Conditional Keyword
 hi! Repeat guifg={base0A}
 hi! Label guifg={base0A}
-hi! Keyword guifg={base0E}
 hi! Exception guifg={base08}
 
 " Preprocessor directives
 hi! PreProc guifg={base0A}
-hi! Include guifg={base0D}
-hi! Define guifg={base0E}
+hi! link Include Keyword
+hi! link Define Keyword
 hi! Macro guifg={base0C}
 hi! PreCondit guifg={base0A}
 
 " Type definitions
-hi! Type guifg={base0A}
-hi! StorageClass guifg={base0A}
-hi! Structure guifg={base0E}
-hi! Typedef guifg={base0A}
+hi! Type guifg={type}
+hi! link StorageClass Type
+hi! link Structure Type
+hi! link Typedef Type
 
 " Special elements
 hi! Special guifg={base0F}
 hi! SpecialChar guifg={base0F}
 hi! Tag guifg={base0A}
 hi! Delimiter guifg={base04}
-hi! SpecialComment guifg={base03}
+hi! link SpecialComment Special
 hi! Debug guifg={base08}
 
 " Spell
@@ -136,10 +136,11 @@ hi! TabLineSel guifg={base04} guibg={base01} gui=NONE
 " =============================================
 " LSP and Tree-sitter Highlighting
 " =============================================
-hi! @keyword guifg={base0E} gui=italic
-hi! @variable guifg={base05}
 hi! @module guifg={base07} gui=italic
 hi! @lsp.type.parameter guifg={base08}
+hi! @lsp.type.property guifg={base07}
+hi! link @variable Identifier
+hi! link @keyword Keyword
 hi! link @lsp.type.interface Type
 hi! link @lsp.type.decorator Constant
 hi! link @lsp.type.macro Macro
@@ -250,9 +251,9 @@ hi! @text.todo guifg={base0D} guibg={base01}
 hi! @text.note guifg={base0B} guibg={base01}
 hi! @text.warning guifg={base0A} guibg={base01}
 hi! @text.danger guifg={base08} guibg={base01}
-hi! link @variable.builtin Variable
-hi! link @function.builtin Function
-hi! link @type.builtin Type
+hi! @variable.builtin guifg={builtin}
+hi! @function.builtin guifg={builtin}
+hi! @type.builtin guifg={builtin}
 
 " =============================================
 " Plugin: Cmp (Completion)
@@ -261,13 +262,18 @@ hi! CmpItemAbbrDeprecated guifg={base03} gui=strikethrough
 hi! CmpItemAbbrMatch guifg={base0D}
 hi! CmpItemAbbrMatchFuzzy guifg={base0D}
 hi! CmpItemKind guifg={base05}
-hi! CmpItemKindVariable guifg={base0E}
-hi! CmpItemKindInterface guifg={base0A}
-hi! CmpItemKindText guifg={base0B}
-hi! CmpItemKindFunction guifg={base0D}
-hi! CmpItemKindMethod guifg={base0D}
-hi! CmpItemKindKeyword guifg={base0E}
-hi! CmpItemKindProperty guifg={base0A}
+hi! link CmpItemKindConstant Constant
+hi! link CmpItemKindVariable Variable
+hi! link CmpItemKindInterface Type
+hi! link CmpItemKindEnum Type
+hi! link CmpItemKindModule @module
+hi! link CmpItemKindText Normal
+hi! link CmpItemKindFunction Function
+hi! link CmpItemKindMethod Function
+hi! link CmpItemKindKeyword Keyword
+hi! link CmpItemKindStruct Type
+hi! link CmpItemKindSnippet String
+hi! link CmpItemKindProperty @lsp.type.property
 hi! CmpItemKindUnit guifg={base0C}
 
 " =============================================

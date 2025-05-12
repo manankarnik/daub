@@ -1,6 +1,15 @@
 [[themes]]
 name = "example"
 
+[themes.syntax]
+string = "base0E"
+function = "base0A"
+keyword = "base0D"
+comment = "base0F"
+type = "base08"
+constant = "base0C"
+identifier = "base0B"
+
 [themes.variants.light]
 base00 = "#e6e6e6"
 base01 = "#cecece"
