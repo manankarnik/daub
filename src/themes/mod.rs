@@ -4,7 +4,6 @@ use std::collections::HashMap;
 
 macro_rules! set_syntax_field {
     ($theme:expr, $variant:expr, $field:ident, $color:ident) => {
-        println!("{}", stringify!($field));
         $variant.syntax.$field = $variant.$color.clone();
         if let Some(syntax) = &$theme.syntax {
             let field = stringify!($field);

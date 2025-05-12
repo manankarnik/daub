@@ -43,7 +43,7 @@ hi! Function guifg={function}
 hi! Operator guifg={base05}
 
 " Control flow and statements
-hi! Keyword guifg={keyword} gui=italic
+hi! Keyword guifg={keyword}
 hi! link Statement Keyword
 hi! link Conditional Keyword
 hi! Repeat guifg={base0A}
@@ -65,7 +65,7 @@ hi! link Typedef Type
 
 " Special elements
 hi! Special guifg={base0F}
-hi! SpecialChar guifg={base0F}
+hi! link SpecialChar Special
 hi! Tag guifg={base0A}
 hi! Delimiter guifg={base04}
 hi! link SpecialComment Special
@@ -136,8 +136,8 @@ hi! TabLineSel guifg={base04} guibg={base01} gui=NONE
 " =============================================
 " LSP and Tree-sitter Highlighting
 " =============================================
-hi! @module guifg={base07} gui=italic
-hi! @lsp.type.parameter guifg={base08}
+hi! @module guifg={base07}
+hi! @lsp.type.parameter guifg={base07}
 hi! @lsp.type.property guifg={base07}
 hi! link @variable Identifier
 hi! link @keyword Keyword

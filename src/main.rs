@@ -3,7 +3,7 @@ mod themes;
 
 use anyhow::{anyhow, Context, Result};
 use clap::{Parser, Subcommand};
-use std::{collections::HashMap, env, fs, io::Lines, path::PathBuf};
+use std::{collections::HashMap, env, fs, path::PathBuf};
 use themes::{define_skipped, get_preloaded_themes, Config, Theme};
 
 #[derive(Parser, Debug)]
