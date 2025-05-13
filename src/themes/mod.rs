@@ -9,22 +9,20 @@ macro_rules! set_field {
             let field = stringify!($field);
             if let Some(value) = group.get(field.strip_prefix("r#").unwrap_or(field)) {
                 $variant.$group.$field = String::from(match value as &str {
-                    "base00" => Ok(&$variant.base00),
-                    "base01" => Ok(&$variant.base01),
-                    "base02" => Ok(&$variant.base02),
-                    "base03" => Ok(&$variant.base03),
-                    "base04" => Ok(&$variant.base04),
-                    "base05" => Ok(&$variant.base05),
-                    "base06" => Ok(&$variant.base06),
-                    "base07" => Ok(&$variant.base07),
-                    "base08" => Ok(&$variant.base08),
-                    "base09" => Ok(&$variant.base09),
-                    "base0A" => Ok(&$variant.base0A),
-                    "base0B" => Ok(&$variant.base0B),
-                    "base0C" => Ok(&$variant.base0C),
-                    "base0D" => Ok(&$variant.base0D),
-                    "base0E" => Ok(&$variant.base0E),
-                    "base0F" => Ok(&$variant.base0F),
+                    "background" => Ok(&$variant.background),
+                    "background_alt" => Ok(&$variant.background_alt),
+                    "background_selection" => Ok(&$variant.background_selection),
+                    "foreground_invisible" => Ok(&$variant.foreground_invisible),
+                    "foreground_dark" => Ok(&$variant.foreground_dark),
+                    "foreground" => Ok(&$variant.foreground),
+                    "red" => Ok(&$variant.red),
+                    "orange" => Ok(&$variant.orange),
+                    "yellow" => Ok(&$variant.yellow),
+                    "green" => Ok(&$variant.green),
+                    "cyan" => Ok(&$variant.cyan),
+                    "blue" => Ok(&$variant.blue),
+                    "purple" => Ok(&$variant.purple),
+                    "brown" => Ok(&$variant.brown),
                     _ => Err(anyhow!("Undefined color")),
                 }?);
             }
@@ -91,37 +89,33 @@ pub struct Variant {
     #[serde(skip)]
     pub color15: String,
     /// Default background
-    pub base00: String,
-    /// Lighter background
-    pub base01: String,
+    pub background: String,
+    /// Alternate background
+    pub background_alt: String,
     /// Selection background
-    pub base02: String,
-    /// Comments, Invisibles
-    pub base03: String,
+    pub background_selection: String,
+    /// Invisible foreground
+    pub foreground_invisible: String,
     /// Dark Foreground
-    pub base04: String,
-    /// Default Foreground
-    pub base05: String,
-    /// Light Foreground
-    pub base06: String,
-    /// Lightest Foreground
-    pub base07: String,
-    /// Red and Bright Red
-    pub base08: String,
+    pub foreground_dark: String,
+    /// Foreground
+    pub foreground: String,
+    /// Red
+    pub red: String,
     /// Orange
-    pub base09: String,
-    /// Yellow and Bright Yellow
-    pub base0A: String,
-    /// Green and Bright Green
-    pub base0B: String,
-    /// Cyan and Bright Cyan
-    pub base0C: String,
-    /// Blue and Bright Blue
-    pub base0D: String,
-    /// Purple and Bright Purple
-    pub base0E: String,
-    /// Dark Red or Brown
-    pub base0F: String,
+    pub orange: String,
+    /// Yellow
+    pub yellow: String,
+    /// Green
+    pub green: String,
+    /// Cyan
+    pub cyan: String,
+    /// Blue
+    pub blue: String,
+    /// Purple
+    pub purple: String,
+    /// Brown
+    pub brown: String,
 
     /// Syntax overrides
     #[serde(skip)]
@@ -145,34 +139,34 @@ pub fn get_preloaded_themes() -> Result<HashMap<String, Theme>> {
 pub fn define_skipped(themes: &mut HashMap<String, Theme>) -> Result<()> {
     for (_, theme) in themes {
         for (_, variant) in theme.variants.iter_mut() {
-            if u32::from_str_radix(variant.base00.trim_start_matches("#"), 16)
+            if u32::from_str_radix(variant.background.trim_start_matches("#"), 16)
                 .context("Failed to parse hex")?
-                > u32::from_str_radix(variant.base07.trim_start_matches("#"), 16)
+                > u32::from_str_radix(variant.foreground.trim_start_matches("#"), 16)
                     .context("Failed to parse hex")?
             {
                 variant.mode = Mode::Light;
-                variant.color0 = variant.base05.clone();
-                variant.color7 = variant.base02.clone();
-                variant.color8 = variant.base04.clone();
-                variant.color15 = variant.base00.clone();
+                variant.color0 = variant.foreground.clone();
+                variant.color7 = variant.background_selection.clone();
+                variant.color8 = variant.foreground_dark.clone();
+                variant.color15 = variant.background.clone();
             } else {
                 variant.mode = Mode::Dark;
-                variant.color0 = variant.base00.clone();
-                variant.color7 = variant.base04.clone();
-                variant.color8 = variant.base02.clone();
-                variant.color15 = variant.base05.clone();
+                variant.color0 = variant.background.clone();
+                variant.color7 = variant.foreground_dark.clone();
+                variant.color8 = variant.background_selection.clone();
+                variant.color15 = variant.foreground.clone();
             }
-            set_field!(theme, variant, syntax, string, base0B);
-            set_field!(theme, variant, syntax, function, base0D);
-            set_field!(theme, variant, syntax, r#macro, base0D);
-            set_field!(theme, variant, syntax, builtin, base0A);
-            set_field!(theme, variant, syntax, keyword, base0E);
-            set_field!(theme, variant, syntax, comment, base03);
-            set_field!(theme, variant, syntax, r#type, base0A);
-            set_field!(theme, variant, syntax, constant, base09);
-            set_field!(theme, variant, syntax, identifier, base05);
-            set_field!(theme, variant, ui, cursor, base05);
-            set_field!(theme, variant, ui, cursor_line, base0A);
+            set_field!(theme, variant, syntax, string, green);
+            set_field!(theme, variant, syntax, function, blue);
+            set_field!(theme, variant, syntax, r#macro, blue);
+            set_field!(theme, variant, syntax, builtin, yellow);
+            set_field!(theme, variant, syntax, keyword, purple);
+            set_field!(theme, variant, syntax, comment, foreground_invisible);
+            set_field!(theme, variant, syntax, r#type, yellow);
+            set_field!(theme, variant, syntax, constant, orange);
+            set_field!(theme, variant, syntax, identifier, foreground);
+            set_field!(theme, variant, ui, cursor, foreground);
+            set_field!(theme, variant, ui, cursor_line, yellow);
         }
     }
     Ok(())

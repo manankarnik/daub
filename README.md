@@ -66,33 +66,6 @@ Multiple themes can be defined in the same config file. Each theme is listed und
 
 Each variant is defined under `themes.variants.{variant}`, where `{variant}` can be any name (e.g., `light`, `dark`, `day`, `night` etc.).
 
-### Variant Keys
-
-The following table is adapted from [Base16 Styling guidelines](https://github.com/tinted-theming/home/blob/main/styling.md), slightly modified to support dark and light modes and update `base07` usage for syntax highlighting.
-
-| Color                                                | base0X | ANSI     | Terminal                 | Text Editor                                                         |
-| ---------------------------------------------------- | ------ | -------- | ------------------------ | ------------------------------------------------------------------- |
-| ![#](https://placehold.co/25/282c34/000000?text=%2B) | base00 | 0 or 15  | Black or White           | Default Background                                                  |
-| ![#](https://placehold.co/25/3f4451/000000?text=%2B) | base01 | -        | -                        | Lighter Background (Used for status bars)                           |
-| ![#](https://placehold.co/25/4f5666/000000?text=%2B) | base02 | 8 or 7   | -                        | Lightest Background                                                 |
-| ![#](https://placehold.co/25/545862/000000?text=%2B) | base03 | -        | -                        | Comments, Invisibles, Line Highlighting                             |
-| ![#](https://placehold.co/25/9196a1/000000?text=%2B) | base04 | 7 or 8   | -                        | Darkest Foreground (Used for status bars)                           |
-| ![#](https://placehold.co/25/abb2bf/000000?text=%2B) | base05 | -        | -                        | Darker Foreground, Caret, Delimiters, Operators                     |
-| ![#](https://placehold.co/25/e6e6e6/000000?text=%2B) | base06 | 15 or 0  | White or Black           | Default Foreground                                                  |
-| ![#](https://placehold.co/25/cdd6f4/000000?text=%2B) | base07 | -        | -                        | Modules, Properties, Current Line Number, Cursor                    |
-| ![#](https://placehold.co/25/e06c75/000000?text=%2B) | base08 | 1 and 9  | Red and Bright Red       | Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted   |
-| ![#](https://placehold.co/25/d19a66/000000?text=%2B) | base09 | 16       | Orange                   | Integers, Boolean, Constants, XML Attributes, Markup Link Url       |
-| ![#](https://placehold.co/25/e5c07b/000000?text=%2B) | base0A | 3 and 11 | Yellow and Bright Yellow | Classes, Markup Bold, Search Text Background                        |
-| ![#](https://placehold.co/25/98c379/000000?text=%2B) | base0B | 2 and 10 | Green and Bright Green   | Strings, Inherited Class, Markup Code, Diff Inserted                |
-| ![#](https://placehold.co/25/56b6c2/000000?text=%2B) | base0C | 6 and 14 | Cyan and Bright Cyan     | Support, Regular Expressions, Escape Characters, Markup Quotes      |
-| ![#](https://placehold.co/25/61afef/000000?text=%2B) | base0D | 4 and 12 | Blue and Bright Blue     | Functions, Methods, Attribute IDs, Headings                         |
-| ![#](https://placehold.co/25/c678dd/000000?text=%2B) | base0E | 5 and 13 | Purple and Bright Purple | Keywords, Storage, Selector, Markup Italic, Diff Changed            |
-| ![#](https://placehold.co/25/be5046/000000?text=%2B) | base0F | 17       | (Dark Red or Brown)      | Deprecated, Opening/Closing Embedded Language Tags, e.g. `<?php ?>` |
-
-#### Support for Dark and Light Modes?
-
-Modifying a dark theme to light and vice versa is as simple as reversing colors `base00` to `base06`! Although the contrast of colors against the new background might need some adjustment.
-
 ### Example Configuration
 
 ```toml
@@ -100,40 +73,38 @@ Modifying a dark theme to light and vice versa is as simple as reversing colors 
 name = "example"
 
 [themes.variants.light]
-base00 = "#e6e6e6"
-base01 = "#cecece"
-base02 = "#919191"
-base03 = "#6e6e6e"
-base04 = "#3e3e3e"
-base05 = "#232323"
-base06 = "#121212"
-base07 = "#636dAc"
-base08 = "#8a2f3a"
-base09 = "#804a1f"
-base0A = "#8a6a2a"
-base0B = "#4f7b2b"
-base0C = "#277e89"
-base0D = "#2369a2"
-base0E = "#753a92"
-base0F = "#6b241c"
+background = "#e6e6e6"
+background_alt = "#cecece"
+background_selection = "#919191"
+foreground_invisible = "#6e6e6e"
+foreground_dark = "#3e3e3e"
+foreground = "#232323"
+foreground = "#121212"
+red = "#8a2f3a"
+orange = "#804a1f"
+yellow = "#8a6a2a"
+green = "#4f7b2b"
+cyan = "#277e89"
+blue = "#2369a2"
+purple = "#753a92"
+brown = "#6b241c"
 
 [themes.variants.dark]
-base00 = "#121212"
-base01 = "#232323"
-base02 = "#3e3e3e"
-base03 = "#6e6e6e"
-base04 = "#919191"
-base05 = "#cecece"
-base06 = "#e6e6e6"
-base07 = "#cdd6f4"
-base08 = "#e06c75"
-base09 = "#d19a66"
-base0A = "#e5c07b"
-base0B = "#98c379"
-base0C = "#56b6c2"
-base0D = "#61afef"
-base0E = "#c678dd"
-base0F = "#be5046"
+background = "#121212"
+background_alt ="#232323"
+background_selection = "#3e3e3e"
+foreground_invisible = "#6e6e6e"
+foreground_dark = "#919191"
+foreground = "#cecece"
+foreground = "#e6e6e6"
+red = "#e06c75"
+orange = "#d19a66"
+yellow = "#e5c07b"
+green = "#98c379"
+cyan = "#56b6c2"
+blue = "#61afef"
+purple = "#c678dd"
+brown = "#be5046"
 ```
 
 ## How to Configure...

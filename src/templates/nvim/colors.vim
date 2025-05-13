@@ -8,20 +8,20 @@ let g:colors_name="daub"
 " =============================================
 " Core UI Elements
 " =============================================
-hi! Normal guifg={base05} guibg={base00}
-hi! NormalFloat guifg={base05} guibg={base01}
-hi! CursorLine guibg={base01}
-hi! Visual guibg={base02}
-hi! LineNr guifg={base03}
+hi! Normal guifg={foreground} guibg={background}
+hi! NormalFloat guifg={foreground} guibg={background_alt}
+hi! CursorLine guibg={background_alt}
+hi! Visual guibg={background_selection}
+hi! LineNr guifg={foreground_invisible}
 hi! CursorLineNr guifg={cursor_line}
-hi! StatusLine guifg={base04} guibg={base01}
-hi! StatusLineNC guifg={base03} guibg={base01}
-hi! Search guifg={base05} guibg={base02}
-hi! CurSearch guifg={base01} guibg={base0A}
-hi! IncSearch guifg={base01} guibg={base0C}
-hi! Title guifg={base0D}
-hi! WinSeparator guifg={base02}
-hi! EndOfBuffer guifg={base00}
+hi! StatusLine guifg={foreground} guibg={background_alt}
+hi! StatusLineNC guifg={foreground_invisible} guibg={background_alt}
+hi! Search guifg={foreground} guibg={background_selection}
+hi! CurSearch guifg={background_alt} guibg={yellow}
+hi! IncSearch guifg={background_alt} guibg={cyan}
+hi! Title guifg={blue}
+hi! WinSeparator guifg={background_selection}
+hi! EndOfBuffer guifg={background}
 
 " =============================================
 " Basic Syntax Highlighting
@@ -32,7 +32,7 @@ hi! Comment guifg={comment} gui=italic
 " Constants
 hi! Constant guifg={constant}
 hi! String guifg={string}
-hi! Character guifg={base08}
+hi! Character guifg={red}
 hi! link Number Constant
 hi! link Boolean Constant
 hi! link Float Constant
@@ -47,8 +47,8 @@ hi! Keyword guifg={keyword}
 hi! link Statement Keyword
 hi! link Conditional Keyword
 hi! link Repeat Keyword
-hi! Label guifg={base0A}
-hi! Exception guifg={base08}
+hi! Label guifg={yellow}
+hi! Exception guifg={red}
 
 " Preprocessor directives
 hi! link PreProc Type
@@ -64,81 +64,81 @@ hi! link Structure Type
 hi! link Typedef Type
 
 " Special elements
-hi! Special guifg={base0F}
+hi! Special guifg={brown}
 hi! link SpecialChar Special
-hi! Tag guifg={base0A}
+hi! Tag guifg={yellow}
 hi! link Delimiter Normal
 hi! link SpecialComment Special
-hi! Debug guifg={base08}
+hi! Debug guifg={red}
 
 " Spell
-hi! SpellBad guisp={base08} gui=undercurl
-hi! SpellCap guisp={base0A} gui=undercurl
-hi! SpellRare guisp={base0C} gui=undercurl
-hi! SpellLocal guisp={base0B} gui=undercurl
+hi! SpellBad guisp={red} gui=undercurl
+hi! SpellCap guisp={yellow} gui=undercurl
+hi! SpellRare guisp={cyan} gui=undercurl
+hi! SpellLocal guisp={green} gui=undercurl
 
 " =============================================
 " Text Formatting and Error States
 " =============================================
-hi! Underlined guifg={base08} gui=underline
-hi! Ignore guifg={base00}
-hi! Error guifg={base00} guibg={base08}
-hi! Todo guifg={base0A} guibg={base01} gui=bold
+hi! Underlined guifg={red} gui=underline
+hi! Ignore guifg={background}
+hi! Error guifg={background} guibg={red}
+hi! Todo guifg={yellow} guibg={background_alt} gui=bold
 hi! Bold gui=bold
 hi! Italic gui=italic
 
 " =============================================
 " UI Components and Feedback
 " =============================================
-hi! Directory guifg={base0D}
-hi! ErrorMsg guifg={base08} guibg={base00}
-hi! FoldColumn guifg={base0C} guibg={base01}
-hi! Folded guifg={base03} guibg={base01}
-hi! MatchParen guifg={base09} guibg={base02} gui=bold
-hi! ModeMsg guifg={base05} gui=bold
-hi! MoreMsg guifg={base05} gui=bold
-hi! Question guifg={base0D}
-hi! Substitute guifg={base01} guibg={base0A}
-hi! SpecialKey guifg={base03}
-hi! TooLong guifg={base08}
-hi! VisualNOS guifg={base08}
-hi! WarningMsg guifg={base08}
-hi! WildMenu guifg={base08} guibg={base0A}
-hi! Conceal guifg={base0D} guibg={base00}
-hi! Cursor guifg={base00} guibg={cursor}
-hi! NonText guifg={base03}
-hi! SignColumn guifg={base03}
-hi! ColorColumn guibg={base01}
-hi! CursorColumn guibg={base01}
-hi! QuickFixLine guifg={base0A} guibg={base01}
+hi! Directory guifg={blue}
+hi! ErrorMsg guifg={red} guibg={background}
+hi! FoldColumn guifg={cyan} guibg={background_alt}
+hi! Folded guifg={foreground_invisible} guibg={background_alt}
+hi! MatchParen guifg={orange} guibg={background_selection} gui=bold
+hi! ModeMsg guifg={foreground} gui=bold
+hi! MoreMsg guifg={foreground} gui=bold
+hi! Question guifg={blue}
+hi! Substitute guifg={background_alt} guibg={yellow}
+hi! SpecialKey guifg={foreground_invisible}
+hi! TooLong guifg={red}
+hi! VisualNOS guifg={red}
+hi! WarningMsg guifg={red}
+hi! WildMenu guifg={red} guibg={yellow}
+hi! Conceal guifg={blue} guibg={background}
+hi! Cursor guifg={background} guibg={cursor}
+hi! NonText guifg={foreground_invisible}
+hi! SignColumn guifg={foreground_invisible}
+hi! ColorColumn guibg={background_alt}
+hi! CursorColumn guibg={background_alt}
+hi! QuickFixLine guifg={yellow} guibg={background_alt}
 "
 " =============================================
 " Diff
 " =============================================
-hi! Added guifg={base0B}
-hi! Changed guifg={base0A}
-hi! Removed guifg={base08}
-hi! DiffAdd guifg={base0B} guibg=NONE
-hi! DiffChange guifg={base0A} guibg=NONE
-hi! DiffDelete guifg={base08} guibg=NONE
-hi! DiffText guifg={base0C} guibg=NONE
+hi! Added guifg={green}
+hi! Changed guifg={yellow}
+hi! Removed guifg={red}
+hi! DiffAdd guifg={green} guibg=NONE
+hi! DiffChange guifg={yellow} guibg=NONE
+hi! DiffDelete guifg={red} guibg=NONE
+hi! DiffText guifg={cyan} guibg=NONE
 
 " =============================================
 " Menus and Navigation
 " =============================================
-hi! PMenu guifg={base05} guibg={base01}
-hi! PMenuSel guifg={base05} guibg={base01}
-hi! PMenuThumb guibg={base02}
-hi! TabLine guifg={base03} guibg={base01}
-hi! TabLineFill guifg={base03} guibg={base01}
-hi! TabLineSel guifg={base04} guibg={base01} gui=NONE
+hi! PMenu guifg={foreground} guibg={background_alt}
+hi! PMenuSel guifg={foreground} guibg={background_alt}
+hi! PMenuThumb guibg={background_selection}
+hi! TabLine guifg={foreground_invisible} guibg={background_alt}
+hi! TabLineFill guifg={foreground_invisible} guibg={background_alt}
+hi! TabLineSel guifg={foreground_dark} guibg={background_alt} gui=NONE
 
 " =============================================
 " LSP and Tree-sitter Highlighting
 " =============================================
-hi! @module guifg={base0C}
-hi! @lsp.type.parameter guifg={base05}
-hi! @lsp.type.property guifg={base05}
+hi! @module guifg={cyan}
+hi! @lsp.type.parameter guifg={foreground}
+hi! @lsp.type.property guifg={foreground}
 hi! link @variable Identifier
 hi! link @keyword Keyword
 hi! link @lsp.type.interface Type
@@ -150,53 +150,53 @@ hi! link @function.macro Macro
 " =============================================
 " Plugin: Telescope
 " =============================================
-hi! TelescopeNormal guifg={base05}
-hi! TelescopeBorder guifg={base02}
-hi! TelescopePromptTitle guifg={base0B}
-hi! TelescopeResultsTitle guifg={base0E}
-hi! TelescopePreviewTitle guifg={base0A}
-hi! TelescopePromptPrefix guifg={base08}
-hi! TelescopeSelection guibg={base01}
-hi! TelescopeMatching guifg={base0A}
-hi! TelescopeResultsIcon guifg={base05}
-hi! TelescopePreviewLine guifg={base03} guibg={base01}
-hi! TelescopePreviewChar guifg={base08} guibg={base01}
-hi! TelescopePrompt guifg={base05} guibg={base01}
+hi! TelescopeNormal guifg={foreground}
+hi! TelescopeBorder guifg={background_selection}
+hi! TelescopePromptTitle guifg={green}
+hi! TelescopeResultsTitle guifg={purple}
+hi! TelescopePreviewTitle guifg={yellow}
+hi! TelescopePromptPrefix guifg={red}
+hi! TelescopeSelection guibg={background_alt}
+hi! TelescopeMatching guifg={yellow}
+hi! TelescopeResultsIcon guifg={foreground}
+hi! TelescopePreviewLine guifg={foreground_invisible} guibg={background_alt}
+hi! TelescopePreviewChar guifg={red} guibg={background_alt}
+hi! TelescopePrompt guifg={foreground} guibg={background_alt}
 
 " =============================================
 " Plugin: Indent Guides
 " =============================================
-hi! IblIndent guifg={base03}
-hi! IblScope guifg={base0D}
-hi! IblWhitespace guifg={base00}
+hi! IblIndent guifg={foreground_invisible}
+hi! IblScope guifg={blue}
+hi! IblWhitespace guifg={background}
 
 " =============================================
 " Plugin: Nvim Tree
 " =============================================
-hi! NvimTreeNormal guifg={base05} guibg={base00}
-hi! NvimTreeFolderName guifg={base0D}
+hi! NvimTreeNormal guifg={foreground} guibg={background}
+hi! NvimTreeFolderName guifg={blue}
 hi! link NvimTreeOpenedFolderName NvimTreeFolderName
-hi! NvimTreeRootFolder guifg={base06}
-hi! NvimTreeSymlink guifg={base0A}
-hi! NvimTreeExecFile guifg={base0D}
-hi! NvimTreeOpenedFile guifg={base0F}
-hi! NvimTreeSpecialFile guifg={base09}
-hi! NvimTreeIndentMarker guifg={base04}
+hi! NvimTreeRootFolder guifg={foreground}
+hi! NvimTreeSymlink guifg={yellow}
+hi! NvimTreeExecFile guifg={blue}
+hi! NvimTreeOpenedFile guifg={brown}
+hi! NvimTreeSpecialFile guifg={orange}
+hi! NvimTreeIndentMarker guifg={foreground_dark}
 
 " =============================================
 " Plugin: Which-Key
 " =============================================
-hi! WhichKeyGroup guifg={base0D}
-hi! WhichKeyDesc guifg={base05}
-hi! WhichKeySeparator guifg={base0A}
+hi! WhichKeyGroup guifg={blue}
+hi! WhichKeyDesc guifg={foreground}
+hi! WhichKeySeparator guifg={yellow}
 
 " =============================================
 " Plugin: Gitsigns
 " =============================================
-hi! GitSignsAdd guifg={base0B}
-hi! GitSignsChange guifg={base0A}
-hi! GitSignsDelete guifg={base08}
-hi! GitSignsCurrentLineBlame guifg={base03}
+hi! GitSignsAdd guifg={green}
+hi! GitSignsChange guifg={yellow}
+hi! GitSignsDelete guifg={red}
+hi! GitSignsCurrentLineBlame guifg={foreground_invisible}
 hi! link GitSignsStagedAdd GitSignsAdd
 hi! link GitSignsStagedChange GitSignsChange
 hi! link GitSignsStagedDelete GitSignsDelete
@@ -223,34 +223,34 @@ hi! link GitSignsStagedUntrackedCul GitSignsAdd
 " =============================================
 " Plugin: LSP Diagnostics
 " =============================================
-hi! DiagnosticError guifg={base08}
-hi! DiagnosticWarn guifg={base0A}
-hi! DiagnosticInfo guifg={base0D}
-hi! DiagnosticHint guifg={base0C}
-hi! DiagnosticOk guifg={base0B}
-hi! DiagnosticUnderlineError guifg={base08} gui=underline
-hi! DiagnosticUnderlineWarn guifg={base0A} gui=underline
-hi! DiagnosticUnderlineInfo guifg={base0D} gui=underline
-hi! DiagnosticUnderlineHint guifg={base0C} gui=underline
-hi! LspReferenceText guibg={base02}
-hi! LspReferenceRead guibg={base02}
-hi! LspReferenceWrite guibg={base02}
-hi! LspCodeLens guifg={base03} gui=italic
+hi! DiagnosticError guifg={red}
+hi! DiagnosticWarn guifg={yellow}
+hi! DiagnosticInfo guifg={blue}
+hi! DiagnosticHint guifg={cyan}
+hi! DiagnosticOk guifg={green}
+hi! DiagnosticUnderlineError guifg={red} gui=underline
+hi! DiagnosticUnderlineWarn guifg={yellow} gui=underline
+hi! DiagnosticUnderlineInfo guifg={blue} gui=underline
+hi! DiagnosticUnderlineHint guifg={cyan} gui=underline
+hi! LspReferenceText guibg={background_selection}
+hi! LspReferenceRead guibg={background_selection}
+hi! LspReferenceWrite guibg={background_selection}
+hi! LspCodeLens guifg={foreground_invisible} gui=italic
 
 " =============================================
 " Plugin: Treesitter
 " =============================================
-hi! @constructor guifg={base0D}
-hi! @tag.delimiter guifg={base0F}
-hi! @tag.attribute guifg={base0A}
-hi! @text.title guifg={base0D} gui=bold
-hi! @text.uri guifg={base0D} gui=underline
-hi! @text.literal guifg={base0B}
-hi! @text.reference guifg={base0C}
-hi! @text.todo guifg={base0D} guibg={base01}
-hi! @text.note guifg={base0B} guibg={base01}
-hi! @text.warning guifg={base0A} guibg={base01}
-hi! @text.danger guifg={base08} guibg={base01}
+hi! @constructor guifg={blue}
+hi! @tag.delimiter guifg={brown}
+hi! @tag.attribute guifg={yellow}
+hi! @text.title guifg={blue} gui=bold
+hi! @text.uri guifg={blue} gui=underline
+hi! @text.literal guifg={green}
+hi! @text.reference guifg={cyan}
+hi! @text.todo guifg={blue} guibg={background_alt}
+hi! @text.note guifg={green} guibg={background_alt}
+hi! @text.warning guifg={yellow} guibg={background_alt}
+hi! @text.danger guifg={red} guibg={background_alt}
 hi! @variable.builtin guifg={builtin}
 hi! @function.builtin guifg={builtin}
 hi! @type.builtin guifg={builtin}
@@ -258,10 +258,10 @@ hi! @type.builtin guifg={builtin}
 " =============================================
 " Plugin: Cmp (Completion)
 " =============================================
-hi! CmpItemAbbrDeprecated guifg={base03} gui=strikethrough
-hi! CmpItemAbbrMatch guifg={base0D}
-hi! CmpItemAbbrMatchFuzzy guifg={base0D}
-hi! CmpItemKind guifg={base05}
+hi! CmpItemAbbrDeprecated guifg={foreground_invisible} gui=strikethrough
+hi! CmpItemAbbrMatch guifg={blue}
+hi! CmpItemAbbrMatchFuzzy guifg={blue}
+hi! CmpItemKind guifg={foreground}
 hi! link CmpItemKindConstant Constant
 hi! link CmpItemKindVariable Variable
 hi! link CmpItemKindInterface Type
@@ -274,110 +274,110 @@ hi! link CmpItemKindKeyword Keyword
 hi! link CmpItemKindStruct Type
 hi! link CmpItemKindSnippet String
 hi! link CmpItemKindProperty @lsp.type.property
-hi! CmpItemKindUnit guifg={base0C}
+hi! CmpItemKindUnit guifg={cyan}
 
 " =============================================
 " Plugin: Notify
 " =============================================
-hi! NotifyERRORBorder guifg={base08}
-hi! NotifyWARNBorder guifg={base0A}
-hi! NotifyINFOBorder guifg={base0D}
-hi! NotifyDEBUGBorder guifg={base03}
-hi! NotifyTRACEBorder guifg={base0C}
-hi! NotifyERRORIcon guifg={base08}
-hi! NotifyWARNIcon guifg={base0A}
-hi! NotifyINFOIcon guifg={base0D}
-hi! NotifyDEBUGIcon guifg={base03}
-hi! NotifyTRACEIcon guifg={base0C}
-hi! NotifyERRORTitle guifg={base08}
-hi! NotifyWARNTitle guifg={base0A}
-hi! NotifyINFOTitle guifg={base0D}
-hi! NotifyDEBUGTitle guifg={base03}
-hi! NotifyTRACETitle guifg={base0C}
+hi! NotifyERRORBorder guifg={red}
+hi! NotifyWARNBorder guifg={yellow}
+hi! NotifyINFOBorder guifg={blue}
+hi! NotifyDEBUGBorder guifg={foreground_invisible}
+hi! NotifyTRACEBorder guifg={cyan}
+hi! NotifyERRORIcon guifg={red}
+hi! NotifyWARNIcon guifg={yellow}
+hi! NotifyINFOIcon guifg={blue}
+hi! NotifyDEBUGIcon guifg={foreground_invisible}
+hi! NotifyTRACEIcon guifg={cyan}
+hi! NotifyERRORTitle guifg={red}
+hi! NotifyWARNTitle guifg={yellow}
+hi! NotifyINFOTitle guifg={blue}
+hi! NotifyDEBUGTitle guifg={foreground_invisible}
+hi! NotifyTRACETitle guifg={cyan}
 
 " =============================================
 " Plugin: Bufferline
 " =============================================
-hi! BufferLineFill guibg={base01}
-hi! BufferLineBackground guifg={base03} guibg={base01}
-hi! BufferLineBufferVisible guifg={base05} guibg={base01}
-hi! BufferLineBufferSelected guifg={base06} guibg={base02} gui=bold
-hi! BufferLineTab guifg={base03} guibg={base01}
-hi! BufferLineTabSelected guifg={base06} guibg={base02}
-hi! BufferLineTabClose guifg={base08} guibg={base01}
-hi! BufferLineIndicatorSelected guifg={base0B} guibg={base02}
-hi! BufferLineSeparator guifg={base02} guibg={base01}
-hi! BufferLineSeparatorSelected guifg={base02} guibg={base02}
+hi! BufferLineFill guibg={background_alt}
+hi! BufferLineBackground guifg={foreground_invisible} guibg={background_alt}
+hi! BufferLineBufferVisible guifg={foreground} guibg={background_alt}
+hi! BufferLineBufferSelected guifg={foreground} guibg={background_selection} gui=bold
+hi! BufferLineTab guifg={foreground_invisible} guibg={background_alt}
+hi! BufferLineTabSelected guifg={foreground} guibg={background_selection}
+hi! BufferLineTabClose guifg={red} guibg={background_alt}
+hi! BufferLineIndicatorSelected guifg={green} guibg={background_selection}
+hi! BufferLineSeparator guifg={background_selection} guibg={background_alt}
+hi! BufferLineSeparatorSelected guifg={background_selection} guibg={background_selection}
 hi! link BufferLineTabSeparator BufferLineSeparator
 hi! link BufferLineTabSeparatorSelected BufferLineSeparatorSelected
-hi! BufferLineModified guifg={base0A} guibg={base01}
-hi! BufferLineModifiedVisible guifg={base0A} guibg={base01}
-hi! BufferLineModifiedSelected guifg={base0A} guibg={base02}
-hi! BufferLineCloseButton guifg={base06} guibg={base01}
-hi! BufferLineCloseButtonVisible guifg={base06} guibg={base01}
-hi! BufferLineCloseButtonSelected guifg={base06} guibg={base02}
+hi! BufferLineModified guifg={yellow} guibg={background_alt}
+hi! BufferLineModifiedVisible guifg={yellow} guibg={background_alt}
+hi! BufferLineModifiedSelected guifg={yellow} guibg={background_selection}
+hi! BufferLineCloseButton guifg={foreground} guibg={background_alt}
+hi! BufferLineCloseButtonVisible guifg={foreground} guibg={background_alt}
+hi! BufferLineCloseButtonSelected guifg={foreground} guibg={background_selection}
 
 " =============================================
 " Plugin: Dashboard
 " =============================================
-hi! DashboardHeader guifg={base0D}
-hi! DashboardCenter guifg={base0B}
-hi! DashboardShortcut guifg={base0E}
-hi! DashboardFooter guifg={base03}
+hi! DashboardHeader guifg={blue}
+hi! DashboardCenter guifg={green}
+hi! DashboardShortcut guifg={purple}
+hi! DashboardFooter guifg={foreground_invisible}
 
 " =============================================
 " Plugin: Barbar
 " =============================================
-hi! BufferCurrent guifg={base06} guibg={base02}
-hi! BufferCurrentIndex guifg={base0B} guibg={base02}
-hi! BufferCurrentMod guifg={base0A} guibg={base02}
-hi! BufferCurrentSign guifg={base0B} guibg={base02}
-hi! BufferCurrentTarget guifg={base08} guibg={base02} gui=bold
-hi! BufferVisible guifg={base05} guibg={base01}
-hi! BufferVisibleIndex guifg={base05} guibg={base01}
-hi! BufferVisibleMod guifg={base0A} guibg={base01}
-hi! BufferVisibleSign guifg={base05} guibg={base01}
-hi! BufferVisibleTarget guifg={base08} guibg={base01} gui=bold
-hi! BufferInactive guifg={base03} guibg={base01}
-hi! BufferInactiveIndex guifg={base03} guibg={base01}
-hi! BufferInactiveMod guifg={base0A} guibg={base01}
-hi! BufferInactiveSign guifg={base03} guibg={base01}
-hi! BufferInactiveTarget guifg={base08} guibg={base01} gui=bold
+hi! BufferCurrent guifg={foreground} guibg={background_selection}
+hi! BufferCurrentIndex guifg={green} guibg={background_selection}
+hi! BufferCurrentMod guifg={yellow} guibg={background_selection}
+hi! BufferCurrentSign guifg={green} guibg={background_selection}
+hi! BufferCurrentTarget guifg={red} guibg={background_selection} gui=bold
+hi! BufferVisible guifg={foreground} guibg={background_alt}
+hi! BufferVisibleIndex guifg={foreground} guibg={background_alt}
+hi! BufferVisibleMod guifg={yellow} guibg={background_alt}
+hi! BufferVisibleSign guifg={foreground} guibg={background_alt}
+hi! BufferVisibleTarget guifg={red} guibg={background_alt} gui=bold
+hi! BufferInactive guifg={foreground_invisible} guibg={background_alt}
+hi! BufferInactiveIndex guifg={foreground_invisible} guibg={background_alt}
+hi! BufferInactiveMod guifg={yellow} guibg={background_alt}
+hi! BufferInactiveSign guifg={foreground_invisible} guibg={background_alt}
+hi! BufferInactiveTarget guifg={red} guibg={background_alt} gui=bold
 
 " =============================================
 " Plugin: Todo comments
 " =============================================
 " PERF
-hi! TodoBgPERF guifg={base00} guibg={base0E}
-hi! TodoFgPERF guifg={base0E}
-hi! TodoSignPERF guifg={base0E}
+hi! TodoBgPERF guifg={background} guibg={purple}
+hi! TodoFgPERF guifg={purple}
+hi! TodoSignPERF guifg={purple}
 
 " HACK
-hi! TodoBgHACK guifg={base00} guibg={base09}
-hi! TodoFgHACK guifg={base09}
-hi! TodoSignHACK guifg={base09}
+hi! TodoBgHACK guifg={background} guibg={orange}
+hi! TodoFgHACK guifg={orange}
+hi! TodoSignHACK guifg={orange}
 
 " TODO
-hi! TodoBgTODO guifg={base00} guibg={base0D}
-hi! TodoFgTODO guifg={base0D}
-hi! TodoSignTODO guifg={base0D}
+hi! TodoBgTODO guifg={background} guibg={blue}
+hi! TodoFgTODO guifg={blue}
+hi! TodoSignTODO guifg={blue}
 
 " NOTE
-hi! TodoBgNOTE guifg={base00} guibg={base0B}
-hi! TodoFgNOTE guifg={base0B} gui=bold
-hi! TodoSignNOTE guifg={base0B}
+hi! TodoBgNOTE guifg={background} guibg={green}
+hi! TodoFgNOTE guifg={green} gui=bold
+hi! TodoSignNOTE guifg={green}
 
 " FIX
-hi! TodoBgFIX guifg={base00} guibg={base08}
-hi! TodoFgFIX guifg={base08} gui=bold
-hi! TodoSignFIX guifg={base08}
+hi! TodoBgFIX guifg={background} guibg={red}
+hi! TodoFgFIX guifg={red} gui=bold
+hi! TodoSignFIX guifg={red}
 
 " WARN
-hi! TodoBgWARN guifg={base00} guibg={base0A}
-hi! TodoFgWARN guifg={base0A}
-hi! TodoSignWARN guifg={base0A}
+hi! TodoBgWARN guifg={background} guibg={yellow}
+hi! TodoFgWARN guifg={yellow}
+hi! TodoSignWARN guifg={yellow}
 
 " TEST
-hi! TodoBgTEST guifg={base00} guibg={base0E}
-hi! TodoFgTEST guifg={base0E}
-hi! TodoSignTEST guifg={base0E}
+hi! TodoBgTEST guifg={background} guibg={purple}
+hi! TodoFgTEST guifg={purple}
+hi! TodoSignTEST guifg={purple}
