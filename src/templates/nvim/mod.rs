@@ -23,7 +23,6 @@ pub fn generate(generated_dir: &PathBuf, variant: &Variant) -> Result<()> {
             base04 = &variant.base04,
             base05 = &variant.base05,
             base06 = &variant.base06,
-            base07 = &variant.base07,
             base08 = &variant.base08,
             base09 = &variant.base09,
             base0A = &variant.base0A,
@@ -34,12 +33,15 @@ pub fn generate(generated_dir: &PathBuf, variant: &Variant) -> Result<()> {
             base0F = &variant.base0F,
             string = &variant.syntax.string,
             function = &variant.syntax.function,
+            r#macro = &variant.syntax.r#macro,
             builtin = &variant.syntax.builtin,
             keyword = &variant.syntax.keyword,
             comment = &variant.syntax.comment,
             r#type = &variant.syntax.r#type,
             constant = &variant.syntax.constant,
             identifier = &variant.syntax.identifier,
+            cursor = &variant.ui.cursor,
+            cursor_line = &variant.ui.cursor_line,
         ),
     )
     .context("Failed to write vim config file")

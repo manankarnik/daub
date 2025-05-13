@@ -2,13 +2,13 @@ use anyhow::{anyhow, Context, Result};
 use serde::Deserialize;
 use std::collections::HashMap;
 
-macro_rules! set_syntax_field {
-    ($theme:expr, $variant:expr, $field:ident, $color:ident) => {
-        $variant.syntax.$field = $variant.$color.clone();
-        if let Some(syntax) = &$theme.syntax {
+macro_rules! set_field {
+    ($theme:expr, $variant:expr, $group:ident, $field:ident, $color:ident) => {
+        $variant.$group.$field = $variant.$color.clone();
+        if let Some(group) = &$theme.$group {
             let field = stringify!($field);
-            if let Some(value) = syntax.get(field.strip_prefix("r#").unwrap_or(field)) {
-                $variant.syntax.$field = String::from(match value as &str {
+            if let Some(value) = group.get(field.strip_prefix("r#").unwrap_or(field)) {
+                $variant.$group.$field = String::from(match value as &str {
                     "base00" => Ok(&$variant.base00),
                     "base01" => Ok(&$variant.base01),
                     "base02" => Ok(&$variant.base02),
@@ -42,6 +42,7 @@ pub struct Theme {
     pub name: String,
     pub author: Option<String>,
     pub syntax: Option<HashMap<String, String>>,
+    pub ui: Option<HashMap<String, String>>,
     pub variants: HashMap<String, Variant>,
 }
 
@@ -56,12 +57,19 @@ pub enum Mode {
 pub struct Syntax {
     pub string: String,
     pub function: String,
+    pub r#macro: String,
     pub builtin: String,
     pub keyword: String,
     pub comment: String,
     pub r#type: String,
     pub constant: String,
     pub identifier: String,
+}
+
+#[derive(Debug, Default)]
+pub struct UI {
+    pub cursor: String,
+    pub cursor_line: String,
 }
 
 #[derive(Deserialize, Debug)]
@@ -88,7 +96,7 @@ pub struct Variant {
     pub base01: String,
     /// Selection background
     pub base02: String,
-    /// Comments, Invisibles, Line Highlighting
+    /// Comments, Invisibles
     pub base03: String,
     /// Dark Foreground
     pub base04: String,
@@ -118,6 +126,10 @@ pub struct Variant {
     /// Syntax overrides
     #[serde(skip)]
     pub syntax: Syntax,
+
+    /// UI overrides
+    #[serde(skip)]
+    pub ui: UI,
 }
 
 pub fn get_preloaded_themes() -> Result<HashMap<String, Theme>> {
@@ -150,14 +162,17 @@ pub fn define_skipped(themes: &mut HashMap<String, Theme>) -> Result<()> {
                 variant.color8 = variant.base02.clone();
                 variant.color15 = variant.base05.clone();
             }
-            set_syntax_field!(theme, variant, string, base0B);
-            set_syntax_field!(theme, variant, function, base0D);
-            set_syntax_field!(theme, variant, builtin, base0A);
-            set_syntax_field!(theme, variant, keyword, base0E);
-            set_syntax_field!(theme, variant, comment, base03);
-            set_syntax_field!(theme, variant, r#type, base0A);
-            set_syntax_field!(theme, variant, constant, base09);
-            set_syntax_field!(theme, variant, identifier, base06);
+            set_field!(theme, variant, syntax, string, base0B);
+            set_field!(theme, variant, syntax, function, base0D);
+            set_field!(theme, variant, syntax, r#macro, base0D);
+            set_field!(theme, variant, syntax, builtin, base0A);
+            set_field!(theme, variant, syntax, keyword, base0E);
+            set_field!(theme, variant, syntax, comment, base03);
+            set_field!(theme, variant, syntax, r#type, base0A);
+            set_field!(theme, variant, syntax, constant, base09);
+            set_field!(theme, variant, syntax, identifier, base05);
+            set_field!(theme, variant, ui, cursor, base05);
+            set_field!(theme, variant, ui, cursor_line, base0A);
         }
     }
     Ok(())

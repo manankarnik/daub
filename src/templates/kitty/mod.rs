@@ -19,7 +19,6 @@ pub fn generate(generated_dir: &PathBuf, variant: &Variant) -> Result<()> {
             base04 = &variant.base04,
             base05 = &variant.base05,
             base06 = &variant.base06,
-            base07 = &variant.base07,
             base08 = &variant.base08,
             base09 = &variant.base09,
             base0A = &variant.base0A,
@@ -28,6 +27,7 @@ pub fn generate(generated_dir: &PathBuf, variant: &Variant) -> Result<()> {
             base0D = &variant.base0D,
             base0E = &variant.base0E,
             base0F = &variant.base0F,
+            cursor = &variant.ui.cursor
         ),
     )
     .context("Failed to write kitty config file")

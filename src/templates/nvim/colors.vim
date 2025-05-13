@@ -13,7 +13,7 @@ hi! NormalFloat guifg={base05} guibg={base01}
 hi! CursorLine guibg={base01}
 hi! Visual guibg={base02}
 hi! LineNr guifg={base03}
-hi! CursorLineNr guifg={base07}
+hi! CursorLineNr guifg={cursor_line}
 hi! StatusLine guifg={base04} guibg={base01}
 hi! StatusLineNC guifg={base03} guibg={base01}
 hi! Search guifg={base05} guibg={base02}
@@ -40,22 +40,22 @@ hi! link Float Constant
 " Identifiers
 hi! Identifier guifg={identifier}
 hi! Function guifg={function}
-hi! Operator guifg={base05}
+hi! link Operator Normal
 
 " Control flow and statements
 hi! Keyword guifg={keyword}
 hi! link Statement Keyword
 hi! link Conditional Keyword
-hi! Repeat guifg={base0A}
+hi! link Repeat Keyword
 hi! Label guifg={base0A}
 hi! Exception guifg={base08}
 
 " Preprocessor directives
-hi! PreProc guifg={base0A}
+hi! link PreProc Type
 hi! link Include Keyword
 hi! link Define Keyword
-hi! Macro guifg={base0C}
-hi! PreCondit guifg={base0A}
+hi! Macro guifg={macro}
+hi! link PreCondit Type
 
 " Type definitions
 hi! Type guifg={type}
@@ -67,7 +67,7 @@ hi! link Typedef Type
 hi! Special guifg={base0F}
 hi! link SpecialChar Special
 hi! Tag guifg={base0A}
-hi! Delimiter guifg={base04}
+hi! link Delimiter Normal
 hi! link SpecialComment Special
 hi! Debug guifg={base08}
 
@@ -105,7 +105,7 @@ hi! VisualNOS guifg={base08}
 hi! WarningMsg guifg={base08}
 hi! WildMenu guifg={base08} guibg={base0A}
 hi! Conceal guifg={base0D} guibg={base00}
-hi! Cursor guifg={base00} guibg={base07}
+hi! Cursor guifg={base00} guibg={cursor}
 hi! NonText guifg={base03}
 hi! SignColumn guifg={base03}
 hi! ColorColumn guibg={base01}
@@ -136,9 +136,9 @@ hi! TabLineSel guifg={base04} guibg={base01} gui=NONE
 " =============================================
 " LSP and Tree-sitter Highlighting
 " =============================================
-hi! @module guifg={base07}
-hi! @lsp.type.parameter guifg={base07}
-hi! @lsp.type.property guifg={base07}
+hi! @module guifg={base0C}
+hi! @lsp.type.parameter guifg={base05}
+hi! @lsp.type.property guifg={base05}
 hi! link @variable Identifier
 hi! link @keyword Keyword
 hi! link @lsp.type.interface Type
@@ -156,7 +156,7 @@ hi! TelescopePromptTitle guifg={base0B}
 hi! TelescopeResultsTitle guifg={base0E}
 hi! TelescopePreviewTitle guifg={base0A}
 hi! TelescopePromptPrefix guifg={base08}
-hi! TelescopeSelection guifg={base06} guibg={base02}
+hi! TelescopeSelection guibg={base01}
 hi! TelescopeMatching guifg={base0A}
 hi! TelescopeResultsIcon guifg={base05}
 hi! TelescopePreviewLine guifg={base03} guibg={base01}
