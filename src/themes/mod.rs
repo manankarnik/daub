@@ -56,7 +56,6 @@ pub struct Syntax {
     pub string: String,
     pub function: String,
     pub r#macro: String,
-    pub builtin: String,
     pub keyword: String,
     pub comment: String,
     pub r#type: String,
@@ -71,7 +70,6 @@ pub struct UI {
 }
 
 #[derive(Deserialize, Debug)]
-#[allow(non_snake_case)]
 pub struct Variant {
     /// Dark or light mode
     #[serde(skip)]
@@ -159,7 +157,6 @@ pub fn define_skipped(themes: &mut HashMap<String, Theme>) -> Result<()> {
             set_field!(theme, variant, syntax, string, green);
             set_field!(theme, variant, syntax, function, blue);
             set_field!(theme, variant, syntax, r#macro, blue);
-            set_field!(theme, variant, syntax, builtin, yellow);
             set_field!(theme, variant, syntax, keyword, purple);
             set_field!(theme, variant, syntax, comment, foreground_invisible);
             set_field!(theme, variant, syntax, r#type, yellow);

@@ -33,7 +33,6 @@ pub fn generate(generated_dir: &PathBuf, variant: &Variant) -> Result<()> {
             string = &variant.syntax.string,
             function = &variant.syntax.function,
             r#macro = &variant.syntax.r#macro,
-            builtin = &variant.syntax.builtin,
             keyword = &variant.syntax.keyword,
             comment = &variant.syntax.comment,
             r#type = &variant.syntax.r#type,

@@ -150,18 +150,13 @@ hi! link @function.macro Macro
 " =============================================
 " Plugin: Telescope
 " =============================================
-hi! TelescopeNormal guifg={foreground}
 hi! TelescopeBorder guifg={background_selection}
 hi! TelescopePromptTitle guifg={green}
 hi! TelescopeResultsTitle guifg={purple}
 hi! TelescopePreviewTitle guifg={yellow}
-hi! TelescopePromptPrefix guifg={red}
-hi! TelescopeSelection guibg={background_alt}
+hi! link TelescopeSelection Visual
 hi! TelescopeMatching guifg={yellow}
-hi! TelescopeResultsIcon guifg={foreground}
-hi! TelescopePreviewLine guifg={foreground_invisible} guibg={background_alt}
-hi! TelescopePreviewChar guifg={red} guibg={background_alt}
-hi! TelescopePrompt guifg={foreground} guibg={background_alt}
+hi! link TelescopePreviewLine Visual
 
 " =============================================
 " Plugin: Indent Guides
@@ -251,9 +246,10 @@ hi! @text.todo guifg={blue} guibg={background_alt}
 hi! @text.note guifg={green} guibg={background_alt}
 hi! @text.warning guifg={yellow} guibg={background_alt}
 hi! @text.danger guifg={red} guibg={background_alt}
-hi! @variable.builtin guifg={builtin}
-hi! @function.builtin guifg={builtin}
-hi! @type.builtin guifg={builtin}
+hi! link @variable.builtin Identifier
+hi! link @constant.builtin Constant
+hi! link @function.builtin Function
+hi! link @type.builtin Type
 
 " =============================================
 " Plugin: Cmp (Completion)
@@ -266,6 +262,7 @@ hi! link CmpItemKindConstant Constant
 hi! link CmpItemKindVariable Variable
 hi! link CmpItemKindInterface Type
 hi! link CmpItemKindEnum Type
+hi! link CmpItemKindEnumMember Constant
 hi! link CmpItemKindModule @module
 hi! link CmpItemKindText Normal
 hi! link CmpItemKindFunction Function
@@ -381,3 +378,18 @@ hi! TodoSignWARN guifg={yellow}
 hi! TodoBgTEST guifg={background} guibg={purple}
 hi! TodoFgTEST guifg={purple}
 hi! TodoSignTEST guifg={purple}
+
+" =============================================
+" Plugin: Compile Mode
+" =============================================
+hi! CompileModeMessage guifg={foreground} gui=underline
+hi! CompileModeMessageRow guifg={purple}
+hi! CompileModeMessageCol guifg={cyan}
+hi! CompileModeError guifg={red}
+hi! CompileModeWarning guifg={yellow}
+hi! CompileModeInfo guifg={green}
+hi! CompileModeCommandOutput guifg={blue}
+hi! link CompileModeDirectoryMessage CompileModeCommandOutput
+hi! link CompileModeOutputFile CompileModeMessageRow
+hi! CompileModeCheckResult guifg={brown}
+hi! link CompileModeCheckTarget CompileModeCheckResult
