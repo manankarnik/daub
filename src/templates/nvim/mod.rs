@@ -9,9 +9,9 @@ use std::{
 
 pub fn generate(generated_dir: &PathBuf, variant: &Variant) -> Result<()> {
     fs::write(
-        generated_dir.join("colors.vim"),
+        generated_dir.join("colors.lua"),
         format!(
-            include_str!("colors.vim"),
+            include_str!("colors.lua"),
             mode = match &variant.mode {
                 Mode::Dark => "dark",
                 Mode::Light => "light",
@@ -30,16 +30,6 @@ pub fn generate(generated_dir: &PathBuf, variant: &Variant) -> Result<()> {
             blue = &variant.blue,
             purple = &variant.purple,
             brown = &variant.brown,
-            string = &variant.syntax.string,
-            function = &variant.syntax.function,
-            r#macro = &variant.syntax.r#macro,
-            keyword = &variant.syntax.keyword,
-            comment = &variant.syntax.comment,
-            r#type = &variant.syntax.r#type,
-            constant = &variant.syntax.constant,
-            identifier = &variant.syntax.identifier,
-            cursor = &variant.ui.cursor,
-            cursor_line = &variant.ui.cursor_line,
         ),
     )
     .context("Failed to write vim config file")

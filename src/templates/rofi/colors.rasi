@@ -19,5 +19,4 @@
     background: {background};
     foreground1: {foreground1};
     background1: {background1};
-    cursor: {cursor};
 }}

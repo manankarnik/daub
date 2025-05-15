@@ -15,7 +15,6 @@ pub fn generate(generated_dir: &PathBuf, variant: &Variant) -> Result<()> {
             background = &variant.background,
             background_alt = &variant.background_alt,
             background_selection = &variant.background_selection,
-            // foreground_invisible = &variant.foreground_invisible,
             foreground_dark = &variant.foreground_dark,
             foreground = &variant.foreground,
             red = &variant.red,
@@ -26,7 +25,6 @@ pub fn generate(generated_dir: &PathBuf, variant: &Variant) -> Result<()> {
             blue = &variant.blue,
             purple = &variant.purple,
             brown = &variant.brown,
-            cursor = &variant.ui.cursor
         ),
     )
     .context("Failed to write kitty config file")

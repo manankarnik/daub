@@ -1,34 +1,6 @@
-use anyhow::{anyhow, Context, Result};
+use anyhow::{Context, Result};
 use serde::Deserialize;
 use std::collections::HashMap;
-
-macro_rules! set_field {
-    ($theme:expr, $variant:expr, $group:ident, $field:ident, $color:ident) => {
-        $variant.$group.$field = $variant.$color.clone();
-        if let Some(group) = &$theme.$group {
-            let field = stringify!($field);
-            if let Some(value) = group.get(field.strip_prefix("r#").unwrap_or(field)) {
-                $variant.$group.$field = String::from(match value as &str {
-                    "background" => Ok(&$variant.background),
-                    "background_alt" => Ok(&$variant.background_alt),
-                    "background_selection" => Ok(&$variant.background_selection),
-                    "foreground_invisible" => Ok(&$variant.foreground_invisible),
-                    "foreground_dark" => Ok(&$variant.foreground_dark),
-                    "foreground" => Ok(&$variant.foreground),
-                    "red" => Ok(&$variant.red),
-                    "orange" => Ok(&$variant.orange),
-                    "yellow" => Ok(&$variant.yellow),
-                    "green" => Ok(&$variant.green),
-                    "cyan" => Ok(&$variant.cyan),
-                    "blue" => Ok(&$variant.blue),
-                    "purple" => Ok(&$variant.purple),
-                    "brown" => Ok(&$variant.brown),
-                    _ => Err(anyhow!("Undefined color")),
-                }?);
-            }
-        }
-    };
-}
 
 #[derive(Deserialize, Debug)]
 pub struct Config {
@@ -39,8 +11,6 @@ pub struct Config {
 pub struct Theme {
     pub name: String,
     pub author: Option<String>,
-    pub syntax: Option<HashMap<String, String>>,
-    pub ui: Option<HashMap<String, String>>,
     pub variants: HashMap<String, Variant>,
 }
 
@@ -49,24 +19,6 @@ pub enum Mode {
     #[default]
     Dark,
     Light,
-}
-
-#[derive(Debug, Default)]
-pub struct Syntax {
-    pub string: String,
-    pub function: String,
-    pub r#macro: String,
-    pub keyword: String,
-    pub comment: String,
-    pub r#type: String,
-    pub constant: String,
-    pub identifier: String,
-}
-
-#[derive(Debug, Default)]
-pub struct UI {
-    pub cursor: String,
-    pub cursor_line: String,
 }
 
 #[derive(Deserialize, Debug)]
@@ -114,14 +66,6 @@ pub struct Variant {
     pub purple: String,
     /// Brown
     pub brown: String,
-
-    /// Syntax overrides
-    #[serde(skip)]
-    pub syntax: Syntax,
-
-    /// UI overrides
-    #[serde(skip)]
-    pub ui: UI,
 }
 
 pub fn get_preloaded_themes() -> Result<HashMap<String, Theme>> {
@@ -154,16 +98,6 @@ pub fn define_skipped(themes: &mut HashMap<String, Theme>) -> Result<()> {
                 variant.color8 = variant.background_selection.clone();
                 variant.color15 = variant.foreground.clone();
             }
-            set_field!(theme, variant, syntax, string, green);
-            set_field!(theme, variant, syntax, function, blue);
-            set_field!(theme, variant, syntax, r#macro, blue);
-            set_field!(theme, variant, syntax, keyword, purple);
-            set_field!(theme, variant, syntax, comment, foreground_invisible);
-            set_field!(theme, variant, syntax, r#type, yellow);
-            set_field!(theme, variant, syntax, constant, orange);
-            set_field!(theme, variant, syntax, identifier, foreground);
-            set_field!(theme, variant, ui, cursor, foreground);
-            set_field!(theme, variant, ui, cursor_line, yellow);
         }
     }
     Ok(())

@@ -28,7 +28,6 @@ pub fn generate(generated_dir: &PathBuf, variant: &Variant) -> Result<()> {
             foreground = &variant.foreground,
             background1 = &variant.background,
             foreground1 = &variant.foreground,
-            cursor = &variant.ui.cursor
         ),
     )
     .context("Failed to write shell config file")
