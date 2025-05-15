@@ -144,26 +144,20 @@ Include `colors.conf` in your `kitty.conf`.
 include ~/.config/daub/gen/colors.conf
 ```
 
-### Neovim (or Vim)
+### Neovim
 
-Create a colorscheme file `{VIM/NEOVIM CONFIG DIR}/colors/daub.vim` with the following content:
+Use colors in your colorscheme configuration.
 
-```vim
-source ~/.config/daub/gen/colors.vim
+```lua
+local colors = dofile("/home/<user>/.config/daub/gen/colors.lua")
 ```
 
-Set colorscheme in your config.
+Set colorscheme in your config. Daub sets `vim.g.colors_name` as "daub".
 
 Lua:
 
 ```lua
-vim.cmd("colorscheme daub")
-```
-
-Vimscript:
-
-```vim
-colorscheme daub
+vim.cmd.colorscheme("daub")
 ```
 
 ### Polybar

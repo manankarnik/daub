@@ -1,19 +1,6 @@
 [[themes]]
 name = "example"
 
-[themes.syntax]
-# string = "clmg"
-# function = "clyl"
-# keyword = "clbl"
-# comment = "clbn"
-# type = "clrd"
-# constant = "clcy"
-# identifier = "clgn"
-
-[themes.ui]
-# cursor = "clrd"
-# cursor_line = "clcy"
-
 [themes.variants.light]
 lv00 = "#e6e6e6"
 lv01 = "#cecece"
