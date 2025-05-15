@@ -66,6 +66,27 @@ Multiple themes can be defined in the same config file. Each theme is listed und
 
 Each variant is defined under `themes.variants.{variant}`, where `{variant}` can be any name (e.g., `light`, `dark`, `day`, `night` etc.).
 
+### Levels and Colors
+
+> **Note:** `lv00` to `lv05` form a linear gradient from background to foreground.
+
+| Name   | Description          |
+| ------ | -------------------- |
+| `lv00` | Background           |
+| `lv01` | Alternate Background |
+| `lv02` | Selection Background |
+| `lv03` | Muted foreground     |
+| `lv04` | Alternate Foreground |
+| `lv05` | Foreground           |
+| `clrd` | Red                  |
+| `clor` | Orange               |
+| `clyl` | Yellow               |
+| `clgn` | Green                |
+| `clcy` | Cyan                 |
+| `clbl` | Blue                 |
+| `clmg` | Magenta              |
+| `clbn` | Brown                |
+
 ### Example Configuration
 
 ```toml
@@ -73,36 +94,36 @@ Each variant is defined under `themes.variants.{variant}`, where `{variant}` can
 name = "example"
 
 [themes.variants.light]
-background = "#e6e6e6"
-background_alt = "#cecece"
-background_selection = "#919191"
-foreground_invisible = "#6e6e6e"
-foreground_dark = "#3e3e3e"
-foreground = "#232323"
-red = "#8a2f3a"
-orange = "#804a1f"
-yellow = "#8a6a2a"
-green = "#4f7b2b"
-cyan = "#277e89"
-blue = "#2369a2"
-purple = "#753a92"
-brown = "#6b241c"
+lv00 = "#e6e6e6"
+lv01 = "#cecece"
+lv02 = "#919191"
+lv03 = "#6e6e6e"
+lv04 = "#3e3e3e"
+lv05 = "#232323"
+clrd = "#8a2f3a"
+clor = "#804a1f"
+clyl = "#8a6a2a"
+clgn = "#4f7b2b"
+clcy = "#277e89"
+clbl = "#2369a2"
+clmg = "#753a92"
+clbn = "#6b241c"
 
 [themes.variants.dark]
-background = "#121212"
-background_alt ="#232323"
-background_selection = "#3e3e3e"
-foreground_invisible = "#6e6e6e"
-foreground_dark = "#919191"
-foreground = "#cecece"
-red = "#e06c75"
-orange = "#d19a66"
-yellow = "#e5c07b"
-green = "#98c379"
-cyan = "#56b6c2"
-blue = "#61afef"
-purple = "#c678dd"
-brown = "#be5046"
+lv00 = "#121212"
+lv01 = "#232323"
+lv02 = "#3e3e3e"
+lv03 = "#6e6e6e"
+lv04 = "#919191"
+lv05 = "#cecece"
+clrd = "#e06c75"
+clor = "#d19a66"
+clyl = "#e5c07b"
+clgn = "#98c379"
+clcy = "#56b6c2"
+clbl = "#61afef"
+clmg = "#c678dd"
+clbn = "#be5046"
 ```
 
 ## How to Configure...

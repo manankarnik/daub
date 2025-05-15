@@ -1,22 +1,16 @@
 * {{
-    color0: {color0};
-    color1: {color1};
-    color2: {color2};
-    color3: {color3};
-    color4: {color4};
-    color5: {color5};
-    color6: {color6};
-    color7: {color7};
-    color8: {color8};
-    color9: {color9};
-    color10: {color10};
-    color11: {color11};
-    color12: {color12};
-    color13: {color13};
-    color14: {color14};
-    color15: {color15};
-    foreground: {foreground};
-    background: {background};
-    foreground1: {foreground1};
-    background1: {background1};
+    lv00: {lv00};
+    lv01: {lv01};
+    lv02: {lv02};
+    lv03: {lv03};
+    lv04: {lv04};
+    lv05: {lv05};
+    clrd: {clrd};
+    clor: {clor};
+    clyl: {clyl};
+    clgn: {clgn};
+    clcy: {clcy};
+    clbl: {clbl};
+    clmg: {clmg};
+    clbn: {clbn};
 }}

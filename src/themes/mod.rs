@@ -38,39 +38,39 @@ pub struct Variant {
     /// ANSI color15
     #[serde(skip)]
     pub color15: String,
-    /// Default background
-    pub background: String,
-    /// Alternate background
-    pub background_alt: String,
-    /// Selection background
-    pub background_selection: String,
-    /// Invisible foreground
-    pub foreground_invisible: String,
-    /// Dark Foreground
-    pub foreground_dark: String,
-    /// Foreground
-    pub foreground: String,
-    /// Red
-    pub red: String,
-    /// Orange
-    pub orange: String,
-    /// Yellow
-    pub yellow: String,
-    /// Green
-    pub green: String,
-    /// Cyan
-    pub cyan: String,
-    /// Blue
-    pub blue: String,
-    /// Purple
-    pub purple: String,
-    /// Brown
-    pub brown: String,
+    /// Level 0: Background
+    pub lv00: String,
+    /// level 1: Alternate Background
+    pub lv01: String,
+    /// level 2: Selection Background
+    pub lv02: String,
+    /// level 3: Muted foreground
+    pub lv03: String,
+    /// level 4: Alternate Foreground
+    pub lv04: String,
+    /// level 5: Foreground
+    pub lv05: String,
+    /// Color Red
+    pub clrd: String,
+    /// Color Orange
+    pub clor: String,
+    /// Color Yellow
+    pub clyl: String,
+    /// Color Green
+    pub clgn: String,
+    /// Color Cyan
+    pub clcy: String,
+    /// Color Blue
+    pub clbl: String,
+    /// Color Magenta
+    pub clmg: String,
+    /// Color Brown
+    pub clbn: String,
 }
 
 pub fn get_preloaded_themes() -> Result<HashMap<String, Theme>> {
     let config: Config = toml::from_str(&[include_str!("example.toml")].join("\n"))
-        .context("Predefined themes should be parsable")?;
+        .context("Pclrdefined themes should be parsable")?;
     let mut themes = HashMap::new();
     for theme in config.themes {
         themes.insert(theme.name.clone(), theme);
@@ -81,22 +81,22 @@ pub fn get_preloaded_themes() -> Result<HashMap<String, Theme>> {
 pub fn define_skipped(themes: &mut HashMap<String, Theme>) -> Result<()> {
     for (_, theme) in themes {
         for (_, variant) in theme.variants.iter_mut() {
-            if u32::from_str_radix(variant.background.trim_start_matches("#"), 16)
+            if u32::from_str_radix(variant.lv00.trim_start_matches("#"), 16)
                 .context("Failed to parse hex")?
-                > u32::from_str_radix(variant.foreground.trim_start_matches("#"), 16)
+                > u32::from_str_radix(variant.lv05.trim_start_matches("#"), 16)
                     .context("Failed to parse hex")?
             {
                 variant.mode = Mode::Light;
-                variant.color0 = variant.foreground.clone();
-                variant.color7 = variant.background_selection.clone();
-                variant.color8 = variant.foreground_dark.clone();
-                variant.color15 = variant.background.clone();
+                variant.color0 = variant.lv05.clone();
+                variant.color7 = variant.lv01.clone();
+                variant.color8 = variant.lv04.clone();
+                variant.color15 = variant.lv00.clone();
             } else {
                 variant.mode = Mode::Dark;
-                variant.color0 = variant.background.clone();
-                variant.color7 = variant.foreground_dark.clone();
-                variant.color8 = variant.background_selection.clone();
-                variant.color15 = variant.foreground.clone();
+                variant.color0 = variant.lv00.clone();
+                variant.color7 = variant.lv04.clone();
+                variant.color8 = variant.lv01.clone();
+                variant.color15 = variant.lv05.clone();
             }
         }
     }
