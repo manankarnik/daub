@@ -175,6 +175,24 @@ Use ANSI colors via xrdb in your `config.ini`:
 ${xrdb:<color>}
 ```
 
+### Waybar
+
+Symlink generated `colors.css` to your waybar config directory:
+
+```sh
+ln -s ~/.config/daub/gen/colors.css ~/.config/waybar/
+```
+
+Import and use ANSI colors via xrdb in your `style.css`:
+
+```css
+@import "colors.css";
+
+* {
+    color: @<color>;
+}
+```
+
 ### Rofi
 
 Include `colors.rasi` in your Rofi config.
