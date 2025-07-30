@@ -70,7 +70,7 @@ pub struct Variant {
 
 pub fn get_preloaded_themes() -> Result<HashMap<String, Theme>> {
     let config: Config = toml::from_str(&[include_str!("example.toml")].join("\n"))
-        .context("Pclrdefined themes should be parsable")?;
+        .context("Pre-defined themes should be parsable")?;
     let mut themes = HashMap::new();
     for theme in config.themes {
         themes.insert(theme.name.clone(), theme);

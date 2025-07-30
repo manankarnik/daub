@@ -137,6 +137,19 @@ Source `colors.sh` and use variables in your `bspwmrc`.
 . "$HOME/.config/daub/gen/colors.sh"
 ```
 
+### Hyprland
+
+Source `hyprcolors.conf` and use variables in your `hyprland.conf`.
+
+```hyprlang
+source = ~/.config/daub/gen/hyprcolors.conf
+
+general {
+    col.active_border = rgb($clbl)
+    col.inactive_border = rgb($lv03)
+}
+```
+
 ### Kitty
 
 Include `colors.conf` in your `kitty.conf`.
